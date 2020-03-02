@@ -1,0 +1,88 @@
+.App {
+  text-align: center;
+}
+.outer-row{
+    display: flex;
+    flex-flow: row nowrap;
+    width:100%;
+    /* background-color: #000; */
+
+
+}
+.the-container {
+    display: block;
+    box-sizing: border-box;
+    width:100vw;
+    /* flex-flow: column; */
+    /* background-color: #d5dfed; */
+}
+.motion-cont {
+    /* display: block; */
+    width:100%;
+    display: block;
+    box-sizing: border-box;
+    /*flex-flow: row nowrap;*/
+    /* background-color: #000; */
+}
+.column-one {
+    flex: 1 1 75%;
+    display:flex;
+    flex-flow: column;
+    box-sizing: border-box;
+    background-color: "blue"
+}
+.column-two {
+    flex: 1 1 25%;
+    display:flex;
+    flex-flow: column;
+    box-sizing: border-box;
+    /* background-color: #d5dfed; */
+}
+.flex-cent {
+    /*flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto; */
+}
+.column-collapse{
+    /* display:flex;
+    flex:1 0 auto; */
+    background-color: #4e5757;
+}
+.fixed-container{
+    position: fixed;
+    background-color: rgba(235, 221, 216, .5);
+    z-index:101;
+}
+.fixed-cont-loc{
+    display: flex;
+    flex-flow: column;
+    width:25%;
+}
+
+@media screen and (max-width:440px){
+    .column-one, .column-two {
+        flex: 0 0 100%;
+        width:100%;
+        min-width: 438px;
+    }
+    .outer-row{
+        flex-flow: row wrap;
+
+    }
+}
+.block-wrapper-25{
+    flex:1 0 25%;
+    margin-bottom: .5rem;
+}
+.block-wrapper-50{
+    flex:1 0 50%;
+    margin-bottom: .5rem;
+}
+.block-wrapper-75{
+    flex:1 0 75%;
+    margin-bottom: .5rem;
+}
+.block-width-100{
+    width:100vw;
+    margin-bottom: .5rem;
+}

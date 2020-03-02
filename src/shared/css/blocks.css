@@ -1,0 +1,24 @@
+.title-block-row {
+
+    margin-bottom: .25rem;
+    display:flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
+.title-block{
+    flex:1 1 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+
+}
+.title-sum-block{
+    flex:1 1 50%;
+    padding:.5rem;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+
+}

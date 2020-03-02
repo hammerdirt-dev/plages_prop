@@ -1,0 +1,40 @@
+export const slideDown = {
+    open:{
+        height:"100%",
+        width:"100%",
+        zIndex:1,
+        transition:{
+            duration:.5,
+        }
+    },
+    closed:{
+        height:0,
+        width:0,
+        transitionEnd:{
+            zIndex:"-1",
+            overflow:"hidden",
+        },
+        transition:{
+            duration:.5,
+        }
+    }
+}
+export const slideIn = {
+    open:{
+        height:"auto",
+        width:"auto",
+        opacity:1,
+        transition:{
+            duration:.3
+        }
+    },
+    closed:{
+        height:0,
+        width:0,
+        opacity:1,
+        // overflow:"hidden",
+        transition:{
+            duration:.3
+        }
+    }
+}

@@ -1,0 +1,64 @@
+.card {
+    background-color: #fff;
+    padding:.6rem;
+    border:thin solid #e4ebe4;
+    border-radius: 1rem;
+    margin-bottom: .5rem;
+    flex:0 0 auto;
+
+}
+.card-title {
+    /* font-size: 1.2rem; */
+    font-family: Rubik;
+
+
+}
+.card-img {
+
+}
+
+.card-desc {
+    /* font-size: 1rem; */
+    font-family: Trirong;
+
+}
+.calendar-card-row {
+  display: flex;
+  /* width:50%; */
+
+  overflow-x: hidden;
+  /* overflow: auto; */
+  flex-wrap: nowrap;
+  /* width:100%; */
+
+}
+.calendar-card-row::-webkit-scrollbar {
+  display: none;
+}
+.calendar-card-row-content {
+    width: 200px;
+    background-color: #e4ebe4;
+    padding:.6rem;
+    border:thin solid #fff;
+    border-radius: 1rem;
+    flex: 0 0 auto;
+
+}
+.calendar-card-title {
+    font-size: 1.1rem;
+    font-family: Rubik;
+    margin-bottom: .5rem;
+}
+.calendar-card-desc {
+    font-family: Trirong;
+    font-size: 1rem;
+
+}
+.calendar-card-img {
+
+}
+
+.calendar-card-summary {
+    font-size: 1rem;
+
+}

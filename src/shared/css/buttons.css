@@ -1,0 +1,53 @@
+button {
+    border: none;
+    padding: .25rem .25rem;
+    margin: 0;
+    height:8vh;
+    min-height: 40px;
+    text-decoration: underline;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 250ms ease-in-out,
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.cardButton{
+    width:100%;
+    color:#0e15eb;
+    background-color: #e4ebe4;
+
+}
+.cardButton:hover, .cardButton:focus{
+    border: 1px solid #e4ebe4;
+    color:#e4ebe4;
+    background-color: #0e15eb;
+}
+.navButton{
+    /* width:100%; */
+    color:#0e15eb;
+    background-color: #50c7c7;
+    margin:.25rem;
+    transition: all .1s;
+}
+.navButton:hover, .navButton:focus{
+    border: 1px solid #50c7c7;
+    color:#50c7c7;
+    background-color:#fff;
+}
+.navButton:active, .cardButton:active {
+    transform: scale(.92)
+}
+
+/* .codeButton{
+    border: 1px solid #fff;
+    min-height: 8vh;
+    flex:0 1 10%;
+    text-decoration: none;
+}
+.codeButton:hover, .codeButton:focus{
+    border: 1px solid #fff;
+    min-height: 8vh;
+    color:#fff;
+} */

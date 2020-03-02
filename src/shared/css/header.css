@@ -1,0 +1,24 @@
+.header-wrapper{
+    position: relative;
+    left:0;
+    top:0;
+    display: flex;
+    flex-flow: row nowrap;
+    width:100%;
+    background-color: rgba(0, 0, 255, .3);
+    padding:.25rem;
+    box-sizing: border-box;
+}
+.header-section-one{
+    display: flex;
+    flex-flow: row wrap;
+    flex:1 1 50%;
+    box-sizing: border-box;
+}
+.header-section-two{
+    display: flex;
+    flex-flow: row wrap;
+    flex:1 1 50%;
+    box-sizing: border-box;
+    align-items: center;
+}

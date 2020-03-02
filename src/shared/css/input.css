@@ -1,0 +1,9 @@
+/* input[type=text], input[type=password]{
+    height: 1.1rem;
+    padding:.2rem;
+    transition: ease-in-out, height .2s ease-in-out;
+}
+input[type=text]:focus, input[type=password]:focus {
+    height: 1.3rem;
+    background-color: var(--fadedLightBlue);
+} */
