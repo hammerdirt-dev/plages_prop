@@ -93,6 +93,9 @@ h6{
 .text-white {
     color:#fff
 }
+.display-inline-b{
+    display: inline-block;
+}
 
 .bkgrnd-dark-grey {
     background-color: #2a868c;

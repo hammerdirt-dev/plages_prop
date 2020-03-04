@@ -10,7 +10,6 @@ class CalendarCard extends Component{
     };
     render(){
         const {date, summary, description} = this.props
-        console.log(this.props)
         return(
             <div className="calendar-card-row-content">
                 <div className="calendar-card-title">

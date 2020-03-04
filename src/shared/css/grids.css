@@ -4,49 +4,48 @@
 .outer-row{
     display: flex;
     flex-flow: row nowrap;
-    width:100%;
-    /* background-color: #000; */
-
-
+    box-sizing: border-box;
+    background-color: #000;
 }
 .the-container {
     display: block;
     box-sizing: border-box;
     width:100vw;
-    /* flex-flow: column; */
-    /* background-color: #d5dfed; */
 }
 .motion-cont {
-    /* display: block; */
-    width:100%;
-    display: block;
     box-sizing: border-box;
-    /*flex-flow: row nowrap;*/
-    /* background-color: #000; */
 }
 .column-one {
-    flex: 1 1 75%;
+    flex: 0 1 75%;
     display:flex;
     flex-flow: column;
     box-sizing: border-box;
-    background-color: "blue"
+    overflow: hidden;
 }
 .column-two {
     flex: 1 1 25%;
     display:flex;
     flex-flow: column;
     box-sizing: border-box;
-    /* background-color: #d5dfed; */
 }
 .flex-cent {
-    /*flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto; */
+    margin-top: auto;
+    margin-bottom: auto;
+    /* flex-flow: column; */
+    flex: 1 0 100%;
+    flex-flow: row nowrap;
 }
 .column-collapse{
-    /* display:flex;
-    flex:1 0 auto; */
-    background-color: #4e5757;
+    display:flex;
+    /* flex:1 0 auto; */
+    position:sticky;
+    top:0px;
+    /* z-index:103; */
+    left:0px;
+    height:auto;
+    border: thin solid blue;
+    overflow: visible;
+    background-color: #fff;
 }
 .fixed-container{
     position: fixed;
@@ -59,15 +58,16 @@
     width:25%;
 }
 
-@media screen and (max-width:440px){
-    .column-one, .column-two {
-        flex: 0 0 100%;
-        width:100%;
-        min-width: 438px;
+@media screen and (max-width:430px){
+    .column-one, .column-two, .column-collapse, .motion-cont{
+        min-width: 420px;
+        /* background-color: "blue" */
     }
+    /* .motion-cont{
+        min-width: 420px;
+    } */
     .outer-row{
         flex-flow: row wrap;
-
     }
 }
 .block-wrapper-25{

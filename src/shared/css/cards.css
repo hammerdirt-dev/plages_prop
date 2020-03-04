@@ -10,48 +10,58 @@
 .card-title {
     /* font-size: 1.2rem; */
     font-family: Rubik;
-
-
 }
 .card-img {
 
 }
-
 .card-desc {
     /* font-size: 1rem; */
     font-family: Trirong;
-
 }
 .calendar-card-row {
-  display: flex;
-  /* width:50%; */
-
-  overflow-x: hidden;
+  /* width:100%;
+  height:auto;
+  flex-flow: row nowrap; */
+  /* flex:0 0 250; */
+  position: relative;
+  display: block;
+  height:auto;
+  width:100%;
+  background-color: #fff;
+  overflow-x: scroll;
+  white-space: nowrap;
+  padding:.3rem .2rem;
+  border-top:thin solid #e4ebe4;
+  border-bottom: thin solid #e4ebe4;
   /* overflow: auto; */
-  flex-wrap: nowrap;
-  /* width:100%; */
+}
 
-}
-.calendar-card-row::-webkit-scrollbar {
-  display: none;
-}
 .calendar-card-row-content {
-    width: 200px;
+    white-space: normal;
     background-color: #e4ebe4;
     padding:.6rem;
-    border:thin solid #fff;
+    border:thin solid #e4ebe4;
     border-radius: 1rem;
-    flex: 0 0 auto;
+    margin-right: .2rem;
+    display: inline-block;
+    width:200px;
+    height:250px;
+    vertical-align: top;
 
 }
 .calendar-card-title {
     font-size: 1.1rem;
     font-family: Rubik;
     margin-bottom: .5rem;
+    background-color: #e4ebe4;
 }
 .calendar-card-desc {
     font-family: Trirong;
-    font-size: 1rem;
+    font-size: .98rem;
+    background-color: #fff;
+    padding:.1rem 0;
+    border-top: thin solid #000;
+    border-bottom: thin solid #000;
 
 }
 .calendar-card-img {
@@ -60,5 +70,15 @@
 
 .calendar-card-summary {
     font-size: 1rem;
+    margin-bottom: .5rem;
+    background-color: #e4ebe4;
+
+}
+@media screen and (max-width:430px){
+    .calendar-card-row {
+        overflow-x: scroll;
+        width:96%;
+        padding:.3rem .3rem;
+    }
 
 }

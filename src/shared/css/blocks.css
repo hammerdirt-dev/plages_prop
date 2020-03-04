@@ -1,5 +1,4 @@
 .title-block-row {
-
     margin-bottom: .25rem;
     display:flex;
     flex-flow: row wrap;
@@ -20,5 +19,27 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+
+}
+.section-block{
+    /* font-family: "Rubik"; */
+    /* width:100%; */
+    background-color: #2a868c;
+    padding:1%;
+    box-sizing: border-box;
+    margin-bottom: .5rem;
+
+}
+@media screen and (max-width:430px){
+    .title-block, .title-sum-block {
+        min-width: 420px;
+        background-color: "blue"
+    }
+    .title-block-row {
+        padding-top: 9vh;
+        display:flex;
+        flex-flow: row wrap;
+        align-items: stretch;
+    }
 
 }

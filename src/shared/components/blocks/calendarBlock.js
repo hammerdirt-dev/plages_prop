@@ -18,11 +18,12 @@ class CalendarBlock extends Component {
         var today = new Date();
         let less_than = today.setDate(today.getDate() + days);
         today = new Date()
-        let greater_than = today.setDate(today.getDate());
+        let greater_than = today.setDate(today.getDate() -1);
         return [greater_than, today,less_than];
     }
     queryCalendar(query,events){
         let days = []
+        console.log(events)
         events.forEach(function(day){
             const date = new Date(day.start.dateTime)
             const beforeDate = new Date(query[0])
@@ -31,11 +32,11 @@ class CalendarBlock extends Component {
                 days.push(day)
             }
         })
-        console.log(days)
         const calendarProps = days.map(day => ({date:new Date(day.start.dateTime), summary:day.summary, description:day.description}))
         return calendarProps
     }
     render(){
+
         const titleProps = {
             title:this.props.title,
             content:this.props.content,
@@ -44,7 +45,7 @@ class CalendarBlock extends Component {
 
         const makeCardProps = () => {
             if(this.props.calendarProps){
-                const x = this.queryCalendar(this.queryBuilder(3), this.props.calendarProps)
+                const x = this.queryCalendar(this.queryBuilder(10), this.props.calendarProps)
                 return x
 
             }else{
@@ -60,9 +61,20 @@ class CalendarBlock extends Component {
         }
         const cardProps = makeCardProps()
         console.log(cardProps)
+        const rowStyle= {
+            position:"relative",
+            backgroundColor:"#fff",
+            padding:".25rem",
+            borderTop:"thin solid #e4ebe4",
+            borderBottom: "thin solid #e4ebe4",
+            display: "flex",
+            flexFlow:"row nowrap",
+            justifyContent: "flex-start",
+            flex:"0 1 100%"
+        }
         return(
-            <div className="calendar-card-row bkgrnd-dark-grey">
-                <div className="calendar-card-row-content">
+            <div className="calendar-card-row" >
+            <div className="calendar-card-row-content" key="oneX" >
                     <div className="calendar-card-title">
                         <strong>{titleProps.title}</strong>
                     </div>
@@ -72,10 +84,14 @@ class CalendarBlock extends Component {
                     </div>
 
                 </div>
-
                 {
-                    cardProps ? cardProps.map((day,i) => <CalendarCard  {...day}/>):<div>"Nothing"</div>
+                    cardProps && cardProps.map((day,i) =>
+
+                                <CalendarCard key={i} {...day}/>
+
+                        )
                 }
+
             </div>
 
         )

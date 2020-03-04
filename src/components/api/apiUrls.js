@@ -47,3 +47,4 @@ export const MICRO_BIO = "https://github.com/hammerdirt/water-quality-2016-2017"
 
 export const GOOGLE_API_CAL = "AIzaSyCTnq_SnPwI3ucmpUSwQgiOEYoEiMp40Ys"
 export const GOOGLE_CALENDAR_ID = "hammerdirt.ch_86ucmubkkssadhr8974kau3e0g@group.calendar.google.com"
+export const CALENDAR_PATH = `https://www.googleapis.com/calendar/v3/calendars/${GOOGLE_CALENDAR_ID}/events/`
