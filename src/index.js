@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './shared/css/index.css';
+import './shared/css/main.css';
 import AppWrapper from './components/wrapper/boilerplate';
 import * as serviceWorker from './serviceWorker';
 

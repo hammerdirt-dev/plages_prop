@@ -5,7 +5,7 @@
     display: flex;
     flex-flow: row nowrap;
     box-sizing: border-box;
-    background-color: #000;
+    border: thin solid blue;
 }
 .the-container {
     display: block;

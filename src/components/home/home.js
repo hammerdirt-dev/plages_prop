@@ -105,10 +105,8 @@ class Home extends Component{
         return(
 
                 <motion.div
-                className="motion-cont"
-
+                    className="motion-cont"
                     display="block"
-                    style={{border:"thin solid black", boxSizing:"border-box"}}
                     initial="open" exit="closed"
                     variants={slideIn}
                     >
@@ -118,44 +116,36 @@ class Home extends Component{
                         animate={this.state.seenotes ? "open":"closed"}
                         className="column-collapse"
                         >
-
                         <div className="flex-cent pad-one-p" >
-
                             <Button {...buttonProps} />
                             <LoremIpsum p={3} />
                             <LoremIpsum p={3} />
                             <Button {...buttonProps} />
-
-
                         </div>
                     </motion.div>
                     <AnimatePresence initial={true}>
-                    <motion.div
-                        className="outer-row"
-                        style={{border:"thin solid black"}}
-                        initial="open"  exit="closed"
-                        variants={slideIn}
-                        >
-                        <div className="column-one" >
-
+                        <motion.div
+                            className="outer-row"
+                            initial="open"  exit="closed"
+                            variants={slideIn}
+                            >
+                            <div className="column-one" >
                                 <TitleBlock {...titleProps} />
                                 <CalendarBlock {...calendarProps} />
                                 <LoremIpsum p={1} />
-                            
-                        </div>
-                        <div className="column-two pad-one-p">
-                            <ContentBlock key={7} {...sectionProps} />
-                            {
-                                fieldDevNotes && fieldDevNotes.map((note,i) => <Card key={i} {...note} />)
-                            }
-                            <ContentBlock key={8} {...sectionTwoProps} />
-                            {
-                                surveyResults && surveyResults.map((note,i) => <Card key={i} {...note} />)
-                            }
-                        </div>
-                    </motion.div>
+                            </div>
+                            <div className="column-two pad-one-p">
+                                <ContentBlock key={7} {...sectionProps} />
+                                {
+                                    fieldDevNotes && fieldDevNotes.map((note,i) => <Card key={i} {...note} />)
+                                }
+                                <ContentBlock key={8} {...sectionTwoProps} />
+                                {
+                                    surveyResults && surveyResults.map((note,i) => <Card key={i} {...note} />)
+                                }
+                            </div>
+                        </motion.div>
                     </AnimatePresence>
-
                 </motion.div>
 
         )

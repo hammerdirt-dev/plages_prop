@@ -36,18 +36,15 @@ class CalendarBlock extends Component {
         return calendarProps
     }
     render(){
-
         const titleProps = {
             title:this.props.title,
             content:this.props.content,
             summary:this.props.summary
         }
-
         const makeCardProps = () => {
             if(this.props.calendarProps){
                 const x = this.queryCalendar(this.queryBuilder(10), this.props.calendarProps)
                 return x
-
             }else{
                 return ([
                     {
@@ -61,20 +58,9 @@ class CalendarBlock extends Component {
         }
         const cardProps = makeCardProps()
         console.log(cardProps)
-        const rowStyle= {
-            position:"relative",
-            backgroundColor:"#fff",
-            padding:".25rem",
-            borderTop:"thin solid #e4ebe4",
-            borderBottom: "thin solid #e4ebe4",
-            display: "flex",
-            flexFlow:"row nowrap",
-            justifyContent: "flex-start",
-            flex:"0 1 100%"
-        }
         return(
             <div className="calendar-card-row" >
-            <div className="calendar-card-row-content" key="oneX" >
+                <div className="calendar-card-row-content" key="oneX" >
                     <div className="calendar-card-title">
                         <strong>{titleProps.title}</strong>
                     </div>
@@ -82,16 +68,10 @@ class CalendarBlock extends Component {
                         <p className="font-point-ninefive">{titleProps.content}</p>
                         <p className="font-point-ninefive">{titleProps.summary}</p>
                     </div>
-
                 </div>
                 {
-                    cardProps && cardProps.map((day,i) =>
-
-                                <CalendarCard key={i} {...day}/>
-
-                        )
+                    cardProps && cardProps.map((day,i) => <CalendarCard key={i} {...day}/>)
                 }
-
             </div>
 
         )

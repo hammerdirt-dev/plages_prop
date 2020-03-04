@@ -30,5 +30,4 @@ export const ICONS = {
     checkmark: "M864 128l-480 480-224-224-160 160 384 384 640-640z",
     arrowUp:"M512 32l-480 480h288v512h384v-512h288z",
     arrowDown:"M512 992l480-480h-288v-512h-384v512h-288z",
-
 }

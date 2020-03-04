@@ -7,8 +7,8 @@ import Button from '../../shared/components/button/buttons'
 import ContentBlock from '../../shared/components/blocks/contentBlock'
 import TitleBlock from '../../shared/components/blocks/titleBlock'
 import Icon from '../../shared/components/icons/icon'
-import{ICONS} from '../../shared/components/icons/twoIcons'
-import { LoremIpsum, Avatar } from 'react-lorem-ipsum';
+import{ICONS} from '../../shared/components/icons/allIcons'
+import { LoremIpsum } from 'react-lorem-ipsum';
 
 
 
@@ -46,7 +46,6 @@ class Project extends Component{
             buttonclass: "cardButton",
             id:"A button id",
             label:"Read Me!",
-
         };
         const cardProps = {
             cardTitle:"A project card title",
@@ -67,7 +66,6 @@ class Project extends Component{
                 buttonclass: "cardButton",
                 id:"prortocol-two",
                 label:"protocol two",
-
             }
         ]
         const fieldDevNotes = [{
@@ -155,9 +153,7 @@ class Project extends Component{
 
                 <motion.div
                     className="motion-cont"
-                    style={{border:"thin solid black"}}
                     initial="open"
-
                     exit="closed"
                     variants={slideIn}
                     >
@@ -178,16 +174,12 @@ class Project extends Component{
                     </motion.div>
                     <motion.div
                         className="outer-row"
-                        style={{border:"thin solid black"}}
                         animate="open"
                         exit="closed"
                         variants={slideIn}
                         >
                         <div className="column-one" >
-
-                            <div className="" >
-                                <TitleBlock {...titleProps} />
-                            </div>
+                            <TitleBlock {...titleProps} />
                         </div>
                         <div className="column-two pad-one-p">
 
@@ -205,10 +197,8 @@ class Project extends Component{
                                 analysisNotes && analysisNotes.map((note,i) => <Card key={i} {...note} />)
                             }
                         </div>
-
                     </motion.div>
                 </motion.div>
-
 
         )
     }
