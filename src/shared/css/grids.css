@@ -31,21 +31,28 @@
 .flex-cent {
     margin-top: auto;
     margin-bottom: auto;
-    /* flex-flow: column; */
     flex: 1 0 100%;
     flex-flow: row nowrap;
 }
 .column-collapse{
     display:flex;
-    /* flex:1 0 auto; */
     position:sticky;
     top:0px;
-    /* z-index:103; */
     left:0px;
     height:auto;
     border: thin solid blue;
     overflow: visible;
     background-color: #fff;
+}
+.drop-down-modal-cont{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:0;
+    left:0;
+    z-index:100;
+    background-color: rgba(9, 41, 89, .6);
 }
 .fixed-container{
     position: fixed;
@@ -61,11 +68,11 @@
 @media screen and (max-width:430px){
     .column-one, .column-two, .column-collapse, .motion-cont{
         min-width: 420px;
-        /* background-color: "blue" */
     }
-    /* .motion-cont{
-        min-width: 420px;
-    } */
+    .drop-down-modal-cont{
+        justify-content: flex-start;
+        padding-left:1rem;
+    }
     .outer-row{
         flex-flow: row wrap;
     }

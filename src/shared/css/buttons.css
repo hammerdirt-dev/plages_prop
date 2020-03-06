@@ -19,7 +19,6 @@ button {
     background-color: #e4ebe4;
     padding:.5rem;
     border: 1px solid #e4ebe4;
-
 }
 .cardButton:hover, .cardButton:focus{
     border: 1px solid blue;
@@ -34,17 +33,20 @@ button {
     width:100%;
     text-align: left;
     transition: all .1s;
-
 }
 .headerButton:active {
     background-color: #000;
     transform: scale(.98);
 }
 .navButton{
+    flex:1 0 20%;
     color:#0e15eb;
     background-color: #50c7c7;
     margin:.25rem;
     transition: all .1s;
+    padding-left:.5rem;
+    padding-right: .5rem;
+    border-radius: .25rem;
 }
 .navButton:hover, .navButton:focus{
     border: 1px solid #50c7c7;

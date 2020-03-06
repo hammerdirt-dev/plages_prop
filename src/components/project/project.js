@@ -4,9 +4,9 @@ import {slideDown, slideIn} from '../../shared/utilities/framer/variants'
 import '../../shared/css/grids.css'
 import Card from '../../shared/components/card/card'
 import Button from '../../shared/components/button/buttons'
-import ContentBlock from '../../shared/components/blocks/contentBlock'
+import {ContentBlock} from '../../shared/components/blocks/contentBlock'
 import TitleBlock from '../../shared/components/blocks/titleBlock'
-import Icon from '../../shared/components/icons/icon'
+import {Icon} from '../../shared/components/icons/icon'
 import{ICONS} from '../../shared/components/icons/allIcons'
 import { LoremIpsum } from 'react-lorem-ipsum';
 

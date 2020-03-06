@@ -5,7 +5,7 @@ import '../../shared/css/grids.css'
 import '../../shared/css/main.css'
 import '../../shared/css/blocks.css'
 import Card from '../../shared/components/card/card'
-import ContentBlock from '../../shared/components/blocks/contentBlock'
+import {ContentBlock} from '../../shared/components/blocks/contentBlock'
 import TitleBlock from '../../shared/components/blocks/titleBlock'
 import CalendarBlock from '../../shared/components/blocks/calendarBlock'
 import Button from '../../shared/components/button/buttons'
@@ -22,6 +22,12 @@ class Home extends Component{
         }
         this.showEvent = this.showEvent.bind(this)
     };
+    componentDidMount(){
+        this._isMounted = true
+    }
+    componentWillUnmount() {
+        this._isMounted = false
+    }
     showEvent(e){
         e.preventDefault()
         console.log("clicked showEvent")
@@ -67,7 +73,7 @@ class Home extends Component{
         const titleSummary = "This is a very brief summary of the project, it could be a picture of another component. This is actually the '<ContentBlock />' component with this paragraph as the content prop, and class names from the classNames prop."
         const titleProps =
             {
-                title:<div><h4>Beached litter 20-21</h4><p>A survey of Swiss rivers and lakes</p></div>,
+                title:<div><h4>Beached litter</h4><p>A survey of Swiss rivers and lakes</p></div>,
                 titleBlock:"title-block",
                 titleSum:<p>{titleSummary}</p>,
                 titleSumBlock:"title-sum-block"

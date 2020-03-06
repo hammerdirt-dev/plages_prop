@@ -1,32 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik|Trirong&display=swap');
 
 :root {
-  --tableBorderColor: #0a3d62;
-  --tableLabelColor: #000;
-  --tableDataColor: #000;
-  --tableHeaderFontColor: #fff;
-  --tableHeaderBackgroundColor:#0a3d62;
-  --tableCellWidth:18%;
-  --tableLabelWidth:64%;
-  --coal:#282c34;
-  --negColor:#e55039;
-  --baseColor:#3c6382;
-  --lightBlue:#82ccdd;
-  --fadedLightBlue:rgba(130,204,221, .4);
-  --warnColor:#e58e26;
-  --baseRed:#b71540;
-  --green:#00e640;
-  --fadedRed:rgba(183,	21,	64, .3);
-  --fadedCoal:rgba(10,25,50, .8);
-  --headingColor:#464646;
-  --paraColor:#36454f;
-  --skillTableBorderColor: #0a3d62;
-  --skillTableLabelColor: #000;
-  --skillTableDataColor: rgba(106, 137, 204, 1);
-  --skillTableHeaderFontColor: #fff;
-  --skillTableHeaderBackgroundColor:rgba(106, 137, 204, 0.5);
-  --skillTableCellWidth:70%;
-  --skillTableLabelWidth:30%;
+    --modalBlue:rgba(9, 41, 89, 1);
+    --tableBorderColor: #0a3d62;
+    --tableLabelColor: #000;
+    --tableDataColor: #000;
+    --tableHeaderFontColor: #fff;
+      --tableHeaderBackgroundColor:#0a3d62;
+      --tableCellWidth:18%;
+      --tableLabelWidth:64%;
+      --coal:#282c34;
+      --negColor:#e55039;
+      --baseColor:#3c6382;
+      --lightBlue:#82ccdd;
+      --fadedLightBlue:rgba(130,204,221, .4);
+      --warnColor:#e58e26;
+      --baseRed:#b71540;
+      --green:#00e640;
+      --fadedRed:rgba(183,	21,	64, .3);
+      --fadedCoal:rgba(10,25,50, .8);
+      --headingColor:#464646;
+      --paraColor:#36454f;
+      --skillTableBorderColor: #0a3d62;
+      --skillTableLabelColor: #000;
+      --skillTableDataColor: rgba(106, 137, 204, 1);
+      --skillTableHeaderFontColor: #fff;
+      --skillTableHeaderBackgroundColor:rgba(106, 137, 204, 0.5);
+      --skillTableCellWidth:70%;
+      --skillTableLabelWidth:30%;
 }
 body {
   margin: 0;
@@ -80,7 +81,6 @@ h5{
 h6{
   font-size: calc(16px + 2vmin);
 }
-
 .triron {
     font-family: "Trirong";
 }
@@ -90,13 +90,28 @@ h6{
 .pad-one-p {
     padding:1%;
 }
+.pad-half-rem{
+    padding:1rem;
+    text-align: center;
+}
+.pad-one-rem{
+    padding:1rem;
+}
+.marg-one-rem{
+    margin:1rem 1rem;
+}
+.no-wrap{
+    white-space: nowrap;
+}
+.text-center{
+    text-align: center;
+}
 .text-white {
-    color:#fff
+    color:#fff;
 }
 .display-inline-b{
     display: inline-block;
 }
-
 .bkgrnd-dark-grey {
     background-color: #2a868c;
 }

@@ -14,22 +14,40 @@ class NavBar extends Component{
                 return ({})
         }
         let navbar_style = styleNavBar(this.props)
-        const navButtonProps = [{
-            buttonclass:"navButton",
-            active: this.props.currentapp === "Home" ? true:false,
-            id:"Home",
-            style:active_style,
-            callback:this.props.requestedApp,
-            label:"Home"
-        },
-        {
-            buttonclass: "navButton",
-            id:"Project",
-            active: this.props.currentapp === "Project" ? true:false,
-            style:active_style,
-            callback:this.props.requestedApp,
-            label:"Project"
-        }]
+        const navButtonProps = [
+            {
+                buttonclass:"navButton",
+                active: this.props.currentapp === "Home" ? true:false,
+                id:"Home",
+                style:active_style,
+                callback:this.props.requestedApp,
+                label:"Home"
+            },
+            {
+                buttonclass: "navButton",
+                id:"Project",
+                active: this.props.currentapp === "Project" ? true:false,
+                style:active_style,
+                callback:this.props.requestedApp,
+                label:"Project"
+            },
+            {
+                buttonclass: "navButton",
+                id:"LogMeIn",
+                active: this.props.currentapp === "LogMeIn" ? true:false,
+                style:active_style,
+                callback:this.props.requestedApp,
+                label:"Login"
+            },
+            {
+                buttonclass: "navButton",
+                id:"updateDB",
+                active: this.props.currentapp === "LogMeIn" ? true:false,
+                style:active_style,
+                callback:this.props.requestedApp,
+                label:"Update DB"
+            }
+        ]
         return(
             <div className="nav-container">
                 <div className="nav-item">

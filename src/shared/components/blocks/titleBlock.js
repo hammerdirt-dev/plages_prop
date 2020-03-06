@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ContentBlock from './contentBlock'
+import {ContentBlock} from './contentBlock'
 import '../../css/blocks.css'
 import '../../css/grids.css'
 

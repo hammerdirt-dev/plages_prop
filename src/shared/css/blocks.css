@@ -4,14 +4,12 @@
     flex-flow: row wrap;
     align-items: stretch;
 }
-
 .title-block{
     flex:1 1 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-
 }
 .title-sum-block{
     flex:1 1 50%;
@@ -19,16 +17,31 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-
 }
 .section-block{
     background-color: #2a868c;
     padding:1%;
     box-sizing: border-box;
     margin-bottom: .5rem;
+}
+.input-div {
+    padding:1rem;
+    margin-bottom:.8rem;
 
 }
+.submit-div{
+    width:100%;
+    text-align: center;
+    margin-bottom:.8rem;
+}
+.modal-content-block{
+    flex:0;
+    background-color: #fff;
+}
 @media screen and (max-width:430px){
+    .modal-content-block{
+        flex:0 0 80%;
+    }
     .title-block, .title-sum-block {
         min-width: 420px;
         background-color: "blue"

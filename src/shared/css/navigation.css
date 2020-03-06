@@ -1,7 +1,11 @@
 .nav-container {
-    border-top:thin solid #e4ebe4;    
-
+    flex:0 1 auto;
+    display: inline-block;
+    margin-left: .5rem;
 }
 .nav-item {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
 
 }

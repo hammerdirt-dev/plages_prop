@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import './apiUrls.js'
 import {getSomeData, returnSomeData} from './httpMethods.js'
-import {GOOGLE_API_CAL,CALENDAR_PATH} from '../api/apiUrls'
+import {GOOGLE_API_CAL,CALENDAR_PATH} from './apiUrls'
 
 
 class FetchData extends Component{
@@ -19,6 +19,7 @@ class FetchData extends Component{
         this.getEvents()
     }
     getEvents(){
+        //Queries the google calendar api
         let that = this;
         const timeMin= new Date()
         const yesterday = new Date(timeMin.setDate(timeMin.getDate() -1))
