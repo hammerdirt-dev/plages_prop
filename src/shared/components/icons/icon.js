@@ -98,6 +98,24 @@ export const Love = (props) => {
     }
     return <Icon {...iconProps} />
 }
+
+export const Close = (props) =>{
+    const iconProps = {
+        icon: ICONS.cross,
+        size :props.size,
+        styles:{
+            svg:{
+                display: 'inline-block',
+                verticalAlign: 'middle',
+            },
+            path: {
+              fill: props.color,
+            }
+        }
+    }
+    return <Icon {...iconProps} />
+
+}
 // network:false,
 // indexed:false,
 // indexedData:false,

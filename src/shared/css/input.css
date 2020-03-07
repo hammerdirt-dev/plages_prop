@@ -7,3 +7,35 @@ input[type=text]:focus, input[type=password]:focus {
     height: 1.3rem;
     background-color: var(--fadedLightBlue);
 } */
+.input-label{
+    height: 7rem;
+    flex:1 0 50%;
+    min-width: 200px;
+    box-sizing: border-box;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    transition: height 250ms ease-in-out,
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.input-label:hover{
+    background-color: var(--fadedRed);
+
+}
+.input-label:hover .label-header{
+    font-size: .8rem;
+
+}
+.input-label:hover .input-number{
+    height:3rem;
+    outline-offset: 1rem;
+    outline: thin solid #000;
+}
+.input-label:hover .date-input{
+    height:3rem;
+    outline-offset: 1rem;
+    outline: thin solid #000;
+}

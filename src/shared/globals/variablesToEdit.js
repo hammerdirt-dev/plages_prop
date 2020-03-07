@@ -1,6 +1,7 @@
 import React from 'react'
 import Home from  '../../components/home/home'
 import Project from '../../components/project/project'
+import Survey from '../../components/survey/survey'
 import {
     LIST_OF_BEACHES,
     LIST_OF_CODES,
@@ -22,7 +23,8 @@ export function appsToLoad(state){
     let {currentapp, userdata, locationdata, ...someState} = state
     return ({
         Project:<Project key="Project" {...someState}  />,
-        Home:<Home key="Home" {...someState}/>
+        Home:<Home key="Home" {...someState}/>,
+        Survey:<Survey key="Survey" {...someState} />
     })
 }
 export const active_style = {

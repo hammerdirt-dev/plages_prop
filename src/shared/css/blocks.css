@@ -4,6 +4,7 @@
     flex-flow: row wrap;
     align-items: stretch;
 }
+
 .title-block{
     flex:1 1 50%;
     display: flex;

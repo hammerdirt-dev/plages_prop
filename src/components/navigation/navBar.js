@@ -33,6 +33,14 @@ class NavBar extends Component{
             },
             {
                 buttonclass: "navButton",
+                id:"Survey",
+                active: this.props.currentapp === "Survey" ? true:false,
+                style:active_style,
+                callback:this.props.requestedApp,
+                label:"Survey"
+            },
+            {
+                buttonclass: "navButton",
                 id:"LogMeIn",
                 active: this.props.currentapp === "LogMeIn" ? true:false,
                 style:active_style,

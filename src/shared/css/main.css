@@ -130,3 +130,18 @@ h6{
 .scroll-x{
     overflow-x: scroll;
 }
+.row-no-wrap{
+    display: flex;
+    flex-flow: row nowrap;
+    flex:1 1 100%;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.row-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    flex:0 0 auto;
+    justify-content: flex-start;
+    align-items: center;
+}

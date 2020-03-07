@@ -37,7 +37,6 @@ class Header extends Component{
             className: "header-label",
             content:"Plages propres 2020-2021"
         }
-        let header_style = styleHeader(this.props)
         const headerIconProps = {
             icon:this.state.showMenu ? ICONS.arrowUp:ICONS.arrowDown,
             size :50,
@@ -57,8 +56,18 @@ class Header extends Component{
             id:"see-nav-menu",
             label:<Icon {...headerIconProps}/>,
         };
+        const dataBaseState = () => {
+            if (!this.props.indexed && !this.props.indexedData){
+                return("red")
+            }else if (this.props.indexed && !this.props.indexedData){
+                return("yellow")
+            }else if(this.props.indexed && this.props.indexedData){
+                return("green")
+            }
+
+        }
         return(
-            <div  className="header-wrapper" id={this.props.id} style={header_style} onClick={this.props.callback} >
+            <div  className="header-wrapper" id={this.props.id} style={styleHeader()} onClick={this.props.callback} >
                 <motion.div variants={openClose} animate={this.state.showMenu ? "open":"closed"} className="header-section-one">
                     <NavBar {...navBarProps} />
                 </motion.div>
@@ -77,13 +86,11 @@ class Header extends Component{
                         </div>
                         <div className="icon-wrapper">
                             {
-                                this.props.network ? <ServerStatus size={20} color="green" />:<ServerStatus size={20} color="red" />
+                                this.props.network ? <ServerStatus size={20} color={"green"} />:<ServerStatus size={20} color="red" />
                             }
                         </div>
                         <div className="icon-wrapper">
-                            {
-                                this.props.indexed ? this.props.indexedData ? <DbStatus size={20} color="green" />:<DbStatus size={20} color="yellow" />:<DbStatus size={20} color="red" />
-                            }
+                            <DbStatus size={20} color={dataBaseState()} />                            
                         </div>
                     </div>
                 </div>

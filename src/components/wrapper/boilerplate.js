@@ -67,6 +67,7 @@ class AppWrapper extends Component{
         }
     }
     dataBaseState(obj){
+        console.log(obj)
         this.setState({
             indexedData:obj.status
         })
@@ -93,7 +94,7 @@ class AppWrapper extends Component{
     }
     requestedApp(e){
         e.preventDefault()
-        console.log(e.target)
+        console.log(e.target.id)
         if(e.target.id === "LogMeIn"){
             this.requestLogIn()
         }else if(e.target.id === "updateDB"){
@@ -126,16 +127,12 @@ class AppWrapper extends Component{
         })
     }
     calendarError(error){
-        console.log(error)
         this.setState({
             calendarError:error,
         })
     }
     render(){
-        console.log(this.state.lastUpdate)
-        console.log(Date.parse(this.state.lastUpdate))
         const new_date = new Date()
-        console.log(Date.parse(new_date))
         console.log(this.state)
         const availableApps = appsToLoad(this.state)
         const headerProps = {
@@ -180,7 +177,6 @@ class AppWrapper extends Component{
                     getData={this.state.updateDB}
                     lastUpdate={this.lastUpdate}
                 />
-
                 <FetchData url={ARE_WE_ONLINE}
                     label={"Network"}
                     callback={this.networkStatus}

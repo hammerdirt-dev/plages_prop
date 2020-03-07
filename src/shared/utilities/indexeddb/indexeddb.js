@@ -12,12 +12,15 @@ export function checkForDb(the_window){
 
 // check to see if the db opens
 export function dbErrorFunction(name){
+    console.log("error")
     return ({status:false, action:"open", dbName:name})
 }
 export function dbSuccessFunction(name){
+    console.log("success")
     return ({status:true, action:"open", dbName:name})
 }
 export function dbUpgrading(name){
+    console.log("upgrade needed")
     return ({status:true, action:"upgrade", dbName:name})
 }
 export function startDBTrans(name, version, callback){
@@ -30,12 +33,12 @@ export function startDBTrans(name, version, callback){
     request.onsuccess = function(event){
         request_status = dbSuccessFunction(name)
         callback(request_status)
-        console.log("success")
+
     }
     request.onupgradeneeded = function(event){
         request_status = dbUpgrading(name)
         callback(request_status)
-        console.log("upgrade needed")
+
 
     }
 
@@ -61,16 +64,16 @@ export function indexGetAllFromStore(storeName,name,version, statusCallBack, dat
         var store = tx.objectStore(storeName)
         var get_data = store.getAll()
         get_data.onsuccess = function(event){
-            console.log(event.target.result)
+
             dataCallBack({name:storeName,result:event.target.result})
         }
         tx.oncomplete = function(event){
-            console.log("complete")
-            statusCallBack(txSuccessFunction(storeName))
+            console.log("check date complete")
+            a_statusCallBack(txSuccessFunction(storeName))
         }
         tx.onerror = function(event){
-            console.log("error")
-            statusCallBack(txErrorFunction(storeName))
+            console.log("check date error")
+            a_statusCallBack(txErrorFunction(storeName))
         }
     }
     request.onupgradeneeded = function(event) {

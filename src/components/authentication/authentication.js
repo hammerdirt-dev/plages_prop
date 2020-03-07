@@ -121,7 +121,6 @@ class LogIn extends Component{
 
     }
     render(){
-        console.log(this.state)
         const logInProps={};
         const active_style = {};
         const buttonProps= {
