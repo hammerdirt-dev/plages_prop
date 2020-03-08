@@ -8,7 +8,7 @@ import {ICONS} from '../../../shared/components/icons/allIcons'
 import {Close} from '../../../shared/components/icons/icon'
 import {motion, AnimatePresence } from 'framer-motion'
 
-class BeachDate extends Component {
+class SelectCodes extends Component {
     constructor(props){
         super(props)
         this.state={
@@ -158,8 +158,8 @@ class BeachDate extends Component {
         }
         return(
             <div className="modal-column-full-width">
-                <div className="form-section-header">
-                    <h6 className="text-white">Is this beach on a river or a lake?</h6>
+                <div className="row-no-wrap no-wrap">
+                    <h6>This is the code selector</h6>
                 </div>
                 <div className="row-no-wrap">
                      <Button
@@ -270,4 +270,4 @@ class BeachDate extends Component {
     }
 }
 
-export default BeachDate
+export default SelectCodes

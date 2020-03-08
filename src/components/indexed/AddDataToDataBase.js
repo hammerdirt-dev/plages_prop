@@ -61,7 +61,7 @@ class GetNewData extends Component {
     addDateOfUpdate(dataBase){
         const now = new Date()
         this.addDataToDataBase([{date:now, lastUpdate:now}], "lastUpdate", dataBase)
-        this.props.lastUpdate([now])
+        this.props.lastUpdate({result:[{date:now, lastUpdate:now}]})
     }
     render(){
         return(

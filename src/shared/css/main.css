@@ -112,6 +112,9 @@ h6{
 .display-inline-b{
     display: inline-block;
 }
+.display-block{
+    display:block;
+}
 .bkgrnd-dark-grey {
     background-color: #2a868c;
 }

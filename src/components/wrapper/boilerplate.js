@@ -20,7 +20,6 @@ import {
     name,
     version,
     checkForDb,
-    openDB,
     startDBTrans,
     indexGetAllFromStore,
     } from '../../shared/utilities/indexeddb/indexeddb'
@@ -35,7 +34,8 @@ class AppWrapper extends Component{
             indexed:false,
             indexedData:false,
             updateDB:false,
-            lastUpdate:[],
+            lastUpdate:false,
+            updateComponent:"",
             currentapp:"Home",
             userdata:false,
             locationdata:false,
@@ -59,12 +59,23 @@ class AppWrapper extends Component{
         })
     }
     componentDidUpdate(prevProps, prevState){
-        let now = new Date()
+        console.log(this.state.lastUpdate)
         if(this.state.indexed && this.state.indexed !== prevState.indexed){
             // if there is an indexedDB check the last update
             // and upgrade the db if needed.
             indexGetAllFromStore("lastUpdate", "BeachLitterOne", 12, this.dataBaseState,this.dataBaseCallBack)
+        }else if(this.state.lastUpdate !== prevState.lastUpdate && this.state.lastUpdate.result[0]){
+            console.log(this.state.lastUpdate.result[0].date)
+            const a_date = this.state.lastUpdate.result[0].date
+            let day = a_date.getDate()
+            let month = a_date.getMonth() + 1
+            let year = a_date.getFullYear()
+            const newDate =  year + "/" + month + "/" + day;
+            this.setState({
+                updateComponent:newDate
+            })
         }
+
     }
     dataBaseState(obj){
         console.log(obj)
@@ -73,8 +84,9 @@ class AppWrapper extends Component{
         })
     }
     dataBaseCallBack(obj){
+        console.log(obj)
         this.setState({
-            [obj.name]:obj.result
+            [obj.name]:obj
         })
     }
     networkStatus(obj){
@@ -145,7 +157,7 @@ class AppWrapper extends Component{
             updateDb:this.authData,
         }
         const dataBaseUpdateContent = () => {
-            if(!this.state.lastUpdate[0]){
+            if(!this.state.updateComponent){
                 return (
                     <>
                         <p>You have no project data on your device. Click "update data" to use this app.</p>
@@ -154,10 +166,12 @@ class AppWrapper extends Component{
                     )
                 }else{
                     return(
-                        <p>Your last update was on this day. Click "Update data" to get the latest surveys</p>
+                        <p>Your last update was on {this.state.updateComponent}. Click "Update data" to get the latest surveys</p>
                     )
                 }
         }
+        console.log(this.state.lastUpdate)
+
         return(
             <div className="the-container">
                 <LogIn
