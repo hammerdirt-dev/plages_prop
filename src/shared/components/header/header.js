@@ -157,7 +157,7 @@ class Header extends Component{
     render(){
         const sectionTwoProps = {
             className: "header-label",
-            content:"Plages-propres 2020-2021"
+            content:"Litter surveyor 2020-2021"
         }
         const headerIconProps = {
             icon:ICONS.menu,

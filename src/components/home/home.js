@@ -145,7 +145,7 @@ class Home extends Component{
                            'This information can be used to identify effective mitigating techniques and to test the effectiveness of existing strategies.'
       const titleProps =
           {
-              title:<div><h4 className="pad-point3-rem">Beached litter</h4><p className="pad-point3-rem font-italics">Beach-litter surveys of Swiss rivers and lakes.</p></div>,
+              title:<div><h4 className="pad-point3-rem">Litter surveyor</h4><p className="pad-point3-rem font-italics">Beach-litter surveys of Swiss rivers and lakes.</p></div>,
               titleBlock:"title-block",
               titleSum:<p className="pad-point3-rem">{titleSummary}</p>,
               titleSumBlock:"title-sum-block"
@@ -300,7 +300,7 @@ class Home extends Component{
 
                                 <ContentBlock key={"homerecentsurveys"} {...{content:"Recent surveys", className:"section-block"}} />
                                   {
-                                    theLastThree ? 
+                                    theLastThree ?
                                       theLastThree.map(survey => <Card key={survey.id} {...survey} />)
                                     :
                                         <div>Waiting on data...</div>

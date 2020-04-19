@@ -13,7 +13,7 @@ export const LIST_OF_USERS = `${prefix}users/` // check
 // survey data
 export const CITY_CODE_TOTALS = `${prefix}code-totals/cities/swiss/` //check
 export const DAILY_TOTALS_PCS_M = `${prefix}surveys/daily-totals/swiss/` //check
-export const SURVEY_RESULTS = '${prefix}surveys/survey-results/'// check query ' location__country, date'
+export const SURVEY_RESULTS = `${prefix}surveys/survey-results/`// check query ' location__country, date'
 export const LOCATION_SURVEY_DETAILS = `${prefix}surveys/daily-totals/code-totals/swiss/` //check
 export const LIST_OF_BEACHES = `${prefix}list-of-beaches/swiss/` //check
 export const LIST_OF_BEACHES_CATEGORY = `${prefix}list-of-beaches/by-category/swiss/` // check
