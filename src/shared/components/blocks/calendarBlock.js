@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import ContentBlock from './contentBlock'
 import '../../css/blocks.css'
 import '../../css/grids.css'
 import '../../css/main.css'
 import '../../css/cards.css'
 import CalendarCard from '../card/CalendarCard'
-import { Frame, Scroll } from "framer"
+
 
 
 class CalendarBlock extends Component {
@@ -14,6 +13,9 @@ class CalendarBlock extends Component {
         this.queryBuilder = this.queryBuilder.bind(this)
         this.queryCalendar = this.queryCalendar.bind(this)
     };
+    componentDidMount(){
+        this._isMounted = true
+    }
     queryBuilder(days){
         var today = new Date();
         let less_than = today.setDate(today.getDate() + days);
@@ -23,16 +25,24 @@ class CalendarBlock extends Component {
     }
     queryCalendar(query,events){
         let days = []
-        console.log(events)
+        // console.log(events)
         events.forEach(function(day){
-            const date = new Date(day.start.dateTime)
-            const beforeDate = new Date(query[0])
-            const afterDate = new Date(query[2])
-            if(date < afterDate && date > beforeDate){
-                days.push(day)
+            if(day.status === 'confirmed'){
+              // console.log(day.summary)
+              // console.log(day.start.date)
+              // console.log(day.location)
+              const date = Date.parse(day.start.date)
+              const beforeDate = Date.parse(new Date(query[0]))
+              const afterDate = Date.parse(new Date(query[2]))
+              if(date < afterDate && date > beforeDate){
+                  days.push(day)
             }
+          }
         })
-        const calendarProps = days.map(day => ({date:new Date(day.start.dateTime), summary:day.summary, description:day.description}))
+        days.sort(function(a,b){
+            return  new Date(a.start.date) - new Date(b.start.date)
+        })
+        const calendarProps = days.map(day => ({date:new Date(day.start.date), summary:day.summary, description:day.description, location:day.location}))
         return calendarProps
     }
     render(){
@@ -43,7 +53,7 @@ class CalendarBlock extends Component {
         }
         const makeCardProps = () => {
             if(this.props.calendarProps){
-                const x = this.queryCalendar(this.queryBuilder(10), this.props.calendarProps)
+                const x = this.queryCalendar(this.queryBuilder(20), this.props.calendarProps)
                 return x
             }else{
                 return ([
@@ -57,7 +67,6 @@ class CalendarBlock extends Component {
             }
         }
         const cardProps = makeCardProps()
-        console.log(cardProps)
         return(
             <div className="calendar-card-row" >
                 <div className="calendar-card-row-content" key="oneX" >

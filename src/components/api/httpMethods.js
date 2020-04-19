@@ -1,4 +1,3 @@
-import React from 'react'
 
 export async function getSomeData(props){
     // Takes in a URL and makes a GET request

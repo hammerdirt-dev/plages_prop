@@ -5,9 +5,9 @@ import '../../css/grids.css'
 
 
 class TitleBlock extends Component {
-    constructor(props){
-        super(props)
-    };
+    // constructor(props){
+    //     super(props)
+    // };
     render(){
         const titleProps = {
             content:this.props.title,

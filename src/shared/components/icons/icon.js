@@ -116,6 +116,56 @@ export const Close = (props) =>{
     return <Icon {...iconProps} />
 
 }
+export const Check = (props) =>{
+    const iconProps = {
+        icon: ICONS.checkmark,
+        size :props.size,
+        styles:{
+            svg:{
+                display: 'inline-block',
+                verticalAlign: 'middle',
+            },
+            path: {
+              fill: props.color,
+            }
+        }
+    }
+    return <Icon {...iconProps} />
+
+}
+export const Inprogress = (props) =>{
+    const iconProps = {
+        icon: ICONS.hourglass,
+        size :props.size,
+        styles:{
+            svg:{
+                display: 'inline-block',
+                verticalAlign: 'middle',
+            },
+            path: {
+              fill: props.color,
+            }
+        }
+    }
+    return <Icon {...iconProps} />
+
+}
+export const MenuClose = (props) => {
+    const iconProps = {
+        icon: ICONS.menuUp,
+        size :props.size,
+        styles:{
+            svg:{
+                display: 'inline-block',
+                verticalAlign: 'middle',
+            },
+            path: {
+              fill: props.color,
+            }
+        }
+    }
+    return <Icon {...iconProps} />
+}
 // network:false,
 // indexed:false,
 // indexedData:false,

@@ -5,16 +5,60 @@
     border-radius: 1rem;
     margin-bottom: .5rem;
     flex:0 0 auto;
-
 }
 .card-title {
     font-family: Rubik;
 }
-.card-img {
-
-}
 .card-desc {
     font-family: Trirong;
+}
+.flexCard, .flexCard70{
+  flex-flow:column;
+  display: flex;
+  justify-content: flex-start;
+  background-color: #fff;
+  padding:.5rem;
+  /* border:thin solid #e4ebe4; */
+  box-sizing: border-box;
+}
+.flexCard{
+  width:100%;
+  align-items: center;
+}
+.profile-pic{
+  width:90%
+}
+.flexCard70{
+  width:100%;
+  align-items: center;
+}
+.flexCardTitle, .miniFlexTitle{
+  flex:0 0 18%;
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom:thin solid #e4ebe4;
+  font-family: Rubik;
+  margin-bottom: .5rem;
+  padding:.1rem 0;
+  text-align: center;
+
+}
+.miniFlexTitle{
+  background-color: black;
+  color:white;
+}
+.flexCardFunction{
+  font-family:Trirong;
+  text-align: center;
+  margin:1rem 0;
+}
+.flexCardLink{
+  margin-bottom: 1rem;
+}
+.cardImage{
+  width:70%;
 }
 .calendar-card-row {
   position: relative;
@@ -40,7 +84,6 @@
     width:200px;
     height:250px;
     vertical-align: top;
-
 }
 .calendar-card-title {
     font-size: 1.1rem;
@@ -57,20 +100,26 @@
     border-bottom: thin solid #000;
 
 }
-.calendar-card-img {
-
-}
-
 .calendar-card-summary {
     font-size: 1rem;
     margin-bottom: .5rem;
     background-color: #e4ebe4;
 }
-@media screen and (max-width:430px){
+@media screen and (max-width:360px){
     .calendar-card-row {
         overflow-x: scroll;
         width:96%;
         padding:.3rem .3rem;
     }
+    .flexCard70{
+      flex:0 0 100%;
+      display: flex;
+      align-items: center;
+      padding:.2rem;
 
+
+    }
+    .cardImage{
+      width:100%;
+    }
 }

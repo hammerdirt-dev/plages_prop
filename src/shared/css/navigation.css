@@ -1,11 +1,19 @@
 .nav-container {
-    flex:0 1 auto;
+    flex:0 1 100%;
     display: inline-block;
     margin-left: .5rem;
+        
 }
 .nav-item {
     display: flex;
-    flex-flow: row;
-    justify-content: space-around;
+    justify-content: flex-start;
+}
+@media screen and (max-width:780px){
+    .nav-item{
+        flex-flow: row wrap;
+    }
+    .nav-container{
+        flex:0 0 100%;
+    }
 
 }

@@ -1,11 +1,10 @@
-/* global gapi */
 import React, {Component} from 'react'
 import {motion} from 'framer-motion'
 import Button from '../../shared/components/button/buttons'
 import '../../shared/css/grids.css'
 import '../../shared/css/blocks.css'
-import {getSomeData, returnSomeData} from '../api/httpMethods.js'
-import {TOKEN_AUTH, REFRESH_TOKEN, TOKEN_TIME_OUT} from '../api/apiUrls'
+// import {getSomeData, returnSomeData} from '../api/httpMethods.js'
+import {TOKEN_AUTH, REFRESH_TOKEN} from '../api/apiUrls'
 import {slideDown} from '../../shared/utilities/framer/variants'
 
 
@@ -23,10 +22,16 @@ class LogIn extends Component{
         this.handleChange = this.handleChange.bind(this)
         this.postRequest = this.postRequest.bind(this)
     };
-    async componentDidMount(){
-        // let some_data = await returnSomeData(getSomeData(this.props.url), this.props.label);
-        // this.props.callback(some_data)
-        // this.getEvents()
+    componentDidMount(){
+        this._isMounted = true
+    }
+    componentWillUnmount() {
+        this._isMounted = false
+    }
+    componentDidUpdate(prevProps, prevState){
+        if(this.state.token !== prevState.token){
+            this.props.reportStatus({token:this.state.token})
+        }
     }
     authLogin(){
         //makes a post request for JWT auth
@@ -69,7 +74,7 @@ class LogIn extends Component{
                         tokenChecked: tokenChecked ? tokenChecked:false,
                         userName:userName ? userName:"Not logged in"
                     }, this.refreshTheToken(refreshToken))
-                    this.props.reportStatus({loggedin:loggedIn})
+                    this.props.reportStatus({loggedin:loggedIn, token:token})
                 })
             }else{
                 this.setState({
@@ -80,15 +85,15 @@ class LogIn extends Component{
     refreshTheToken(refreshToken){
         // call to use refresh token
         // extends logged in status of user
-        console.log(this.state.refreshToken)
         const makeRequest = () => fetch(REFRESH_TOKEN, {
             method: "POST",
             headers: {"Content-Type": "application/json",},
             body:  `{"refresh": "${refreshToken}"}`
         })
         .then(response => response.json())
-        .then(data => this.setState({token:data.access, refreshToken:""}))
-        // window.setTimeout(makeRequest, TOKEN_TIME_OUT)
+        .then(data => {
+            this.setState({token:data.access, refreshToken:""})
+        })
         makeRequest()
     }
     responseStatus(e){
@@ -98,27 +103,21 @@ class LogIn extends Component{
         })
     }
     handleChange({target:{name, value}}){
-        console.log("changing")
-        console.log(name, value)
         this.setState({
             [name]:value
         })
     }
     postRequest(e){
         e.preventDefault()
-        console.log(e.target)
         if(this.state.userName && this.state.password){
             this.setState({
                 responseDetail:"Sending request..."
             },this.authLogin())
-
         }else{
             this.setState({
                 responseDetail:"Fill in both fields"
             })
-
         }
-
     }
     render(){
         const logInProps={};

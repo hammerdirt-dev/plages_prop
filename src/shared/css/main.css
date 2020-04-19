@@ -81,6 +81,30 @@ h5{
 h6{
   font-size: calc(16px + 2vmin);
 }
+input + span {
+  padding-right: 30px;
+}
+input[type=number]{
+    width:10rem;
+}
+input:invalid+span:after {
+  position: absolute;
+  content: '✖';
+  padding-left: 5px;
+}
+
+input:valid+span:after {
+  position: absolute;
+  content: '✓';
+  padding-left: 5px;
+}
+label > h6 {
+    font-size: 1.2rem;
+}
+img{
+  width:100%;
+  height:auto;
+}
 .triron {
     font-family: "Trirong";
 }
@@ -91,23 +115,84 @@ h6{
     padding:1%;
 }
 .pad-half-rem{
-    padding:1rem;
+    padding:.5rem;
     text-align: center;
+}
+.pad-point3-rem{
+    padding-left:.6rem;
+    padding-right:.6rem;
 }
 .pad-one-rem{
     padding:1rem;
 }
+.pad-top-one-rem{
+    padding-top: 1rem;
+}
+.pad-bot-one-rem{
+    padding-bottom: 1rem;
+}
+.marg-top-bot-point-five{
+  margin:1.5rem 0;
+}
+.marg-half-rem{
+  margin:.5rem 0;
+}
 .marg-one-rem{
     margin:1rem 1rem;
 }
+.marg-right-one-rem{
+    margin-right: 1rem;
+}
+.marg-left-half-rem{
+    margin-left: .5rem;
+}
+.height-100vh{
+  min-height: 100vh;
+}
 .no-wrap{
     white-space: nowrap;
+}
+.border-top{
+    border-top: thin solid #091c1c
+}
+.border-bottom{
+    border-bottom: thin solid #091c1c
+}
+.border-bottom-black{
+    border-bottom: thin solid black
+}
+.border-bottom-dotted{
+    border-bottom: thin dotted #091c1c
+}
+.border-all-gray{
+    border: thin solid #091c1c;
+    border-radius: .5rem;
+}
+.border-light-gray{
+  border:thin solid #e4ebe4;
+}
+.green-border{
+    border-radius: .5rem;
+    border:thin solid #2a868c;
+}
+
+.background-white{
+    background-color: #fff;
 }
 .text-center{
     text-align: center;
 }
 .text-white {
     color:#fff;
+}
+.text-blue{
+    color:blue;
+}
+.text-red{
+  color:red;
+}
+.text-bold{
+  font-weight: bold;
 }
 .display-inline-b{
     display: inline-block;
@@ -116,7 +201,7 @@ h6{
     display:block;
 }
 .bkgrnd-dark-grey {
-    background-color: #2a868c;
+    background-color: #091c1c;
 }
 .font-one-point-two{
     font-size: 1.2rem
@@ -124,8 +209,22 @@ h6{
 .font-one-point-five{
     font-size: 1.5rem
 }
+.font-one-point-eight{
+    font-size: 1.8rem
+}
 .font-point-nine{
     font-size: .9rem
+}
+.font-italics{
+  font-style: italic;
+}
+.text-over{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.font-one-rem{
+  font-size: 1rem;
 }
 .font-point-ninefive{
     font-size: .95rem
@@ -133,18 +232,113 @@ h6{
 .scroll-x{
     overflow-x: scroll;
 }
-.row-no-wrap{
+.row-no-wrap, .row-wrap, .row-wrap-stretch{
     display: flex;
+}
+.marg-top-one-rem{
+    margin-top:1rem;
+}
+.row-no-wrap{
     flex-flow: row nowrap;
-    flex:1 1 100%;
     justify-content: center;
     align-items: stretch;
+    flex:1 1 100%;
 }
-
 .row-wrap{
-    display: flex;
     flex-flow: row wrap;
     flex:0 0 auto;
     justify-content: flex-start;
     align-items: center;
+}
+.row-wrap-stretch{
+    flex-flow: row wrap;
+    flex:0 0 auto;
+    justify-content: space-around;
+    align-items: stretch;
+}
+.flex-00-auto{
+    flex: 0 0 auto;
+}
+.align-self{
+  display: flex;
+  flex-flow: column;
+  align-self: center;
+  width:80%;
+  background-color: #fff;
+  padding:1rem;
+}
+.acc-section{
+  width:100%;
+  display:block;
+  /* background-color: red; */
+  box-sizing: border-box;
+}
+.acc-header{
+  color:#2980b9;
+  padding:2%;
+  border:1px solid #2980b9;
+  width:100%;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.acc-row{
+  flex-flow: row wrap;
+  width:100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.acc-cell{
+    flex:0 0 24%;
+    color:#2980b9;
+    margin-right: .1rem;
+    margin-bottom:.1rem;
+    border:thin solid #2980b9;
+    font-size: 1rem;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    justify-content: center;
+    min-height:6vh;
+
+    /* height:6vh; */
+
+
+}
+.flex-20{
+  flex:1 1 20;
+  background-color: #2980b9;
+
+
+}
+.w-100-p{
+  width:100%;
+}
+
+
+.inputTall{
+    font-size: 1.5rem;
+}
+@media screen and (min-width:360px) and (max-width:780px){
+
+}
+
+@media screen and (max-width: 360px){
+  .acc-cell{
+      flex:1 0 30%;
+      color:#2980b9;
+      margin-right: .1rem;
+      margin-bottom:.1rem;
+      padding:.1rem;
+      border:thin solid #2980b9;
+      font-size: .9rem;
+      display: flex;
+      flex-flow: column;
+      text-align: center;
+      justify-content: center;
+      min-height:6vh;
+      box-sizing: border-box;
+      word-break: break-word;
+  }
 }

@@ -1,29 +1,29 @@
-/* global gapi */
 import React, {Component} from 'react'
-import {motion, AnimatePresence } from 'framer-motion'
+import {AnimatePresence } from 'framer-motion'
 import '../../shared/css/grids.css'
 import '../../shared/css/navigation.css'
 import {
     appsToLoad,
-    active_style
+    name,
+    version,
+    theDataStores,
     } from '../../shared/globals/variablesToEdit'
-import {slideIn} from '../../shared/utilities/framer/variants'
 import '../../shared/css/main.css'
-import Button from '../../shared/components/button/buttons'
 import FetchData from '../api/fetchData'
 import Header from '../../shared/components/header/header'
 import LogIn from '../authentication/authentication'
 import Footer from '../../shared/components/footer/footer'
 import GetNewData from '../indexed/AddDataToDataBase'
+import GetDataFromIndexed from '../indexed/getDataFromIndexed'
 import Modal from '../../shared/components/modal/modal'
 import {
-    name,
-    version,
     checkForDb,
-    startDBTrans,
     indexGetAllFromStore,
     } from '../../shared/utilities/indexeddb/indexeddb'
-import {ARE_WE_ONLINE, FAKE_URL} from '../api/apiUrls'
+import {getBySubject} from '../../shared/utilities/jsHelper/helperMethods'
+import {ARE_WE_ONLINE} from '../api/apiUrls'
+import Prism from "prismjs"
+import NoDataNoNetwork from '../noDataNoNetwork/noDataNoNetwork'
 
 class AppWrapper extends Component{
     constructor(){
@@ -36,10 +36,13 @@ class AppWrapper extends Component{
             updateDB:false,
             lastUpdate:false,
             updateComponent:"",
-            currentapp:"Home",
+            currentapp:"",
             userdata:false,
             locationdata:false,
             authData:true,
+            updated:[],
+            currentArticles:false,
+
         }
         this.requestedApp = this.requestedApp.bind(this)
         this.dataBaseState = this.dataBaseState.bind(this)
@@ -52,41 +55,79 @@ class AppWrapper extends Component{
         this.authData = this.authData.bind(this)
         this.updateDB = this.updateDB.bind(this)
         this.lastUpdate = this.lastUpdate.bind(this)
+        this.updateDBStatus = this.updateDBStatus.bind(this)
+        this.getAllStores = this.getAllStores.bind(this)
+        this.isThereData = this.isThereData.bind(this)
     };
     async componentDidMount(){
         this.setState({
-            indexed:checkForDb(window)
+          indexed:checkForDb(window)
         })
     }
     componentDidUpdate(prevProps, prevState){
-        console.log(this.state.lastUpdate)
         if(this.state.indexed && this.state.indexed !== prevState.indexed){
-            // if there is an indexedDB check the last update
-            // and upgrade the db if needed.
-            indexGetAllFromStore("lastUpdate", "BeachLitterOne", 12, this.dataBaseState,this.dataBaseCallBack)
-        }else if(this.state.lastUpdate !== prevState.lastUpdate && this.state.lastUpdate.result[0]){
-            console.log(this.state.lastUpdate.result[0].date)
-            const a_date = this.state.lastUpdate.result[0].date
-            let day = a_date.getDate()
-            let month = a_date.getMonth() + 1
-            let year = a_date.getFullYear()
-            const newDate =  year + "/" + month + "/" + day;
+          // if there is an indexedDB check the last update
+          // and upgrade the db if needed.
+          indexGetAllFromStore("lastUpdate", name, version, this.dataBaseState, this.isThereData)
+        }if(this.state.currentArticles !== prevState.currentArticles && !this.state.fieldNotes){
+          console.log("calling for dev and field notes")
+          var fieldNotes = getBySubject(this.state.currentArticles, "Field notes")
+          var devNotes = getBySubject(this.state.currentArticles, "Dev notes")
+          if(fieldNotes || devNotes){
+            var latestDevNotes = devNotes.sort((a,b) => new Date(a.last_edit.slice(10)) - new Date(b.last_edit.slice(10)))
+            var latestFieldNotes = fieldNotes.sort((a,b) => new Date(a.last_edit.slice(10)) - new Date(b.last_edit.slice(10)))
             this.setState({
-                updateComponent:newDate
-            })
+              fieldNotes:latestFieldNotes[0],
+              devNotes:latestDevNotes[0]
+              })
+            }
+        }if(this.state.loggedin !== prevState.loggedin){
+          var draftSurveys = indexGetAllFromStore('draftSurvey',name,version, this.dataBaseState, this.dataBaseCallBack)
+          this.setState({
+            draftSurvey:draftSurveys
+          })
         }
-
     }
-    dataBaseState(obj){
-        console.log(obj)
+    isThereData(obj){
+      // if the database has a date value for last updated
+      // then there is data in the db
+      if(obj.result.length){
+        const a_date = new Date(obj.result[0].date)
+        let day = a_date.getDate()
+        let month = a_date.getMonth() + 1
+        let year = a_date.getFullYear()
+        const newDate =  year + "/" + month + "/" + day;
         this.setState({
-            indexedData:obj.status
+            [obj.name]:obj,
+            indexedData:true,
+            currentapp:"Home",
+            updateComponent:newDate,
         })
+      }else{
+        this.setState({
+            [obj.name]:obj,
+            indexedData:false
+        })
+      }
+
+      }
+    dataBaseState(obj){
+      // returns {status:true, action:"transaction", store:`${name}DbTx`}
+      // from the txSuccessFunction on the db
+      this.setState({
+          [obj.store]:obj.status
+      })
     }
     dataBaseCallBack(obj){
-        console.log(obj)
-        this.setState({
-            [obj.name]:obj
+      // returns the data from the call to indexed db
+      // {name:storeName,result:data}
+      this.setState({
+          [obj.name]:obj
+      })
+    }
+    getAllStores(obj){
+      this.setState({
+            ...obj.result
         })
     }
     networkStatus(obj){
@@ -106,13 +147,11 @@ class AppWrapper extends Component{
     }
     requestedApp(e){
         e.preventDefault()
-        console.log(e.target.id)
         if(e.target.id === "LogMeIn"){
             this.requestLogIn()
         }else if(e.target.id === "updateDB"){
             this.authData()
         }else{
-            console.log("setting app state")
             this.setState({
                 currentapp:e.target.id
             })
@@ -126,6 +165,16 @@ class AppWrapper extends Component{
     updateDB(){
         this.setState({
             updateDB:true,
+            updated:[],
+            theDataStoresLength:theDataStores.length +1
+        })
+    }
+    updateDBStatus(a_store){
+        var new_array = this.state.updated.slice();
+        new_array.push(a_store)
+        this.setState({
+            updated:new_array,
+            dbIsUpdated:true,
         })
     }
     lastUpdate(obj){
@@ -144,10 +193,9 @@ class AppWrapper extends Component{
         })
     }
     render(){
-        const new_date = new Date()
-        console.log(this.state)
         const availableApps = appsToLoad(this.state)
         const headerProps = {
+            updateComponent:this.state.updateComponent,
             currentapp:this.state.currentapp,
             requestedApp:this.requestedApp,
             loggedin:this.state.loggedin,
@@ -166,42 +214,67 @@ class AppWrapper extends Component{
                     )
                 }else{
                     return(
-                        <p>Your last update was on {this.state.updateComponent}. Click "Update data" to get the latest surveys</p>
+                        <p className="pad-one-rem">Your last update was on {this.state.updateComponent}. <br/>Click "Update data" to get the latest surveys</p>
                     )
                 }
         }
-        console.log(this.state.lastUpdate)
-
         return(
             <div className="the-container">
-                <LogIn
-                    logMeIn={this.state.logMeIn}
-                    callBack={this.requestLogIn}
-                    reportStatus={this.loginStatus}
-                />
-                <Modal
-                    modalControlProps={{callback:this.authData, buttonclass:"navButton", label:"Close"}}
-                    modalCallBackProps={{callback:this.updateDB, buttonclass:"navButton", label:"Update data"}}
-                    showMe={this.state.authData}
-                    modalTitleProps={{className:"section-block rubik no-wrap", content:<h6 className="text-white pad-one-rem">Update the data on device</h6>}}
-                    modalContentProps={{className:"inputDiv pad-one-rem", content:dataBaseUpdateContent()}}
-                />
-                <Header {...headerProps} />
-                <GetNewData
+              {
+                this.state.network ? (
+                  <>
+                  <LogIn
+                      logMeIn={this.state.logMeIn}
+                      callBack={this.requestLogIn}
+                      reportStatus={this.loginStatus}
+                  />
+                  <Modal
+                      modalControlProps={{callback:this.authData, buttonclass:"navButton", label:"Close"}}
+                      modalCallBackProps={{callback:this.updateDB, buttonclass:"navButton", label:"Update data"}}
+                      showMe={this.state.authData}
+                      modalTitleProps={{className:"section-block rubik", content:<h6 className="text-white text-center">Update the data on device</h6>}}
+                      modalContentProps={{className:"inputDiv", content:dataBaseUpdateContent()}}
+                  />
+
+                </>):null
+              }
+              <Header {...headerProps} />
+              {
+                this.state.network && this.state.updateDB ? (
+                  <GetNewData
                     getData={this.state.updateDB}
-                    lastUpdate={this.lastUpdate}
-                />
+                    updateDBStatus={this.updateDBStatus}
+                    isThereData={this.isThereData}
+                  />
+
+                  ):null
+                }
                 <FetchData url={ARE_WE_ONLINE}
                     label={"Network"}
                     callback={this.networkStatus}
+                    network={this.state.network}
                     calendarCallback={this.calendarCallback}
                     calendarError = {this.calendarError}
                 />
-                <AnimatePresence initial={true}>
                 {
-                    availableApps[this.state.currentapp]
+                    this.state.indexedData ? (
+                        <GetDataFromIndexed
+                          dataCallBack={this.getAllStores}
+                          statusCallBack={this.dataBaseState}
+                          indexedData={this.state.indexedData}
+                        />):null
                 }
-                </AnimatePresence>
+                {
+                  this.state.indexedData ? (
+                    <AnimatePresence initial={true}>
+                    {
+                        availableApps[this.state.currentapp]
+                    }
+                    </AnimatePresence>):(
+                      <NoDataNoNetwork />
+                    )
+
+                }
                 <Footer {...headerProps} />
             </div>
         )

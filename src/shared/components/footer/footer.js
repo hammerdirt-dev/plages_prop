@@ -1,12 +1,7 @@
 import React, {Component} from 'react'
 import '../../css/grids.css'
 import '../../css/footer.css'
-import {ContentBlock} from '../blocks/contentBlock'
-import Icon from '../icons/icon'
-import {ICONS} from '../icons/allIcons'
-import {openClose} from '../../utilities/framer/variants'
-import Button from '../button/buttons'
-import{ motion} from 'framer-motion'
+import bafu_footer from '../../images/bafu_footer.png'
 
 class Footer extends Component{
     constructor(props){
@@ -26,30 +21,21 @@ class Footer extends Component{
         const stylefooter = props => {
             return ({})
         }
-        const sectionOneProps = {
-            className: "footer-label",
-            content:"Some copyright and contact info"
-        }
-        const sectionTwoProps = {
-            className: "footer-label",
-            content:"Plages propres 2020-2021"
-        }
         let footer_style = stylefooter(this.props)
-        const buttonProps = {
-            callback:this.seeMenu,
-            buttonclass: "footerButton",
-            id:"back-to-top",
-            label:"Back to top",
-        };
+
         return(
             <div  className="footer-wrapper" id={this.props.id} style={footer_style} onClick={this.props.callback} >
                 <div className="footer-section-one">
-                    <ContentBlock {...sectionOneProps} />
+                  <div className="footer-label">
+
+                   Commissioned by the Swiss Federal office for the environment.<br/>
+                   <span className="footer-attribution">Brought to you by <a href="https://www.hammerdirt.ch" rel="noopener noreferrer" target="_blank">hammerdirt</a></span>
+                  </div>
                 </div>
                 <div className="footer-section-two">
-                    <div className="footer-label">
-                        <ContentBlock {...sectionTwoProps} />
-                    </div>
+                  <div className="footer-label">
+                    <img src={bafu_footer} alt="Logo of the swiss confederation" />
+                  </div>
                 </div>
             </div>
         )

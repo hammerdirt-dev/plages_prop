@@ -5,24 +5,33 @@
     display: flex;
     flex-flow: row nowrap;
     box-sizing: border-box;
-    border: thin solid blue;
 }
 .the-container {
     display: block;
     box-sizing: border-box;
     width:100vw;
+    min-height: 100vh;
 }
 .motion-cont {
     box-sizing: border-box;
+    display: block;
 }
 .modal-column-full-width{
     flex: 0 1 100%;
     display:flex;
     flex-flow: column;
     box-sizing: border-box;
-    /* overflow: hidden; */
     padding:.5rem;
-
+    border-radius: .5rem;
+}
+.column-full-width{
+    flex: 0 1 100%;
+    display:flex;
+    flex-flow: column;
+    box-sizing: border-box;
+    align-items: center;
+    padding:.5rem;
+    border-radius: .5rem;
 }
 
 .column-one {
@@ -38,31 +47,18 @@
     flex-flow: column;
     box-sizing: border-box;
 }
-.flex-cent {
-    margin-top: auto;
-    margin-bottom: auto;
-    flex: 1 0 100%;
-    flex-flow: row nowrap;
+.article-wrapper {
+    display: flex;
+    flex-flow: column;
+    padding: 0 1rem;
 }
 .column-collapse{
-    display:flex;
-    position:sticky;
+    display:block;
+    position:relative;
     top:0px;
     left:0px;
-    height:auto;
-    border: thin solid blue;
-    overflow: visible;
-    background-color: #fff;
-}
-.drop-down-modal-cont{
-    position: fixed;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    top:0;
-    left:0;
-    z-index:100;
-    background-color: rgba(9, 41, 89, .6);
+    background-color: #fff;
 }
 .fixed-container{
     position: fixed;
@@ -74,14 +70,13 @@
     flex-flow: column;
     width:25%;
 }
-
-@media screen and (max-width:430px){
-    .column-one, .column-two, .column-collapse, .motion-cont{
-        min-width: 420px;
+@media screen and (max-width:780px){
+    .column-full-width, .column-one, .column-two, .motion-cont{
+        min-width: 350px;
+        flex:1 1 100%;
     }
-    .drop-down-modal-cont{
-        justify-content: flex-start;
-        padding-left:1rem;
+    .article-wrapper{
+        margin-top: 12vh;
     }
     .outer-row{
         flex-flow: row wrap;

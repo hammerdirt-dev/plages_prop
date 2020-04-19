@@ -23,11 +23,11 @@ class Modal extends Component{
                 animate={this.props.showMe ? "open":"closed"}
                 >
                 <div className="modal-content-block">
-                    <ContentBlock {...this.props.modalTitleProps} />
-                    <ContentBlock {...this.props.modalContentProps} />
+                        <ContentBlock {...this.props.modalTitleProps} />
+                        <ContentBlock {...this.props.modalContentProps} />
                     <div className="submit-div">
-                    <Button {...this.props.modalControlProps}/>
-                    <Button {...this.props.modalCallBackProps} />
+                        <Button {...this.props.modalControlProps}/>
+                        <Button {...this.props.modalCallBackProps} />
                     </div>
                 </div>
             </motion.div>

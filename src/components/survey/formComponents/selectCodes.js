@@ -1,271 +1,207 @@
 import React, {Component} from "react";
-import {slideDown, slideIn} from '../../../shared/utilities/framer/variants'
+import {slideDownAuto} from '../../../shared/utilities/framer/variants'
 import '../../../shared/css/grids.css'
 import '../../../shared/css/main.css'
 import '../../../shared/css/blocks.css'
 import Button from '../../../shared/components/button/buttons'
-import {ICONS} from '../../../shared/components/icons/allIcons'
-import {Close} from '../../../shared/components/icons/icon'
-import {motion, AnimatePresence } from 'framer-motion'
+import DisableButton from '../../../shared/components/button/disableButtons'
+import {motion} from 'framer-motion'
 
 class SelectCodes extends Component {
     constructor(props){
         super(props)
         this.state={
-            filtered_beaches:[],
+            filteredCodes:[],
+            selectedCode:"",
+            disableButton:true,
         }
-        this.selectType = this.selectType.bind(this)
-        this.selectRegion = this.selectRegion.bind(this)
-        this.selectBeach = this.selectBeach.bind(this)
-        this.selectedBeach = this.selectedBeach.bind(this)
-        // this.setExpanded = this.setExpanded.bind(this)
-        // this.onFocus = this.onFocus.bind(this)
-        // this.onSearchBeaches = this.onSearchBeaches.bind(this)
-        // this.filterBeaches = this.filterBeaches.bind(this)
-        // this.selectBeach = this.selectBeach.bind(this)
-        // this.selectDate = this.selectDate.bind(this)
-        // this.onConfirm = this.onConfirm.bind(this)
+        this.selectMaterial = this.selectMaterial.bind(this)
+        this.selectCode = this.selectCode.bind(this)
+        this.filterCodes = this.filterCodes.bind(this)
+        this.searchTerm = this.searchTerm.bind(this)
+        this.codeQuantity = this.codeQuantity.bind(this)
+        this.addToInventory = this.addToInventory.bind(this)
     }
     componentDidMount(){
         this._isMounted = true
-        this.setState({
-
-        })
-    }
-    componentDidUpdate(prevProps, prevState){
-        if(this.props !== prevProps){
-            console.log("Beach Selector Recieved new props")
-            // this.setState({
-            //     // filtered_beaches:this.props.choices,
-            //     beach_list:this.props.choices
-            // })
-        }
+        this.filterCodes = this.filterCodes.bind(this)
     }
     componentWillUnmount(){
         this._isMounted = false
     }
-    // onFocus(e){
-    //     e.preventDefault()
-    //     this.setState({
-    //         beach_search:"",
-    //         selected_beach:"",
-    //         confirmed:false,
-    //     })
-    // }
-    // onConfirm(){
-    //     let some_state = {
-    //         beach:this.state.selected_beach,
-    //         date:this.state.date,
-    //     }
-    //     this.setState({
-    //         confirmed:true,
-    //         open:!this.state.open
-    //     },this.props.callBack(some_state))
-    // }
-    // onSearchBeaches(e){
-    //     e.preventDefault()
-    //     if(e.target.value){
-    //         this.setState({
-    //             confirmed:false,
-    //             beach_search:e.target.value
-    //         },this.filterBeaches(e.target.value))
-    //     }else{
-    //         this.setState({
-    //             filtered_beaches:this.state.beach_list,
-    //             beach_search:e.target.value,
-    //             confirmed:false,
-    //         })
-    //     }
-    // }
-    // filterBeaches(targetValue){
-    //     let searchTerm = targetValue.toLowerCase()
-    //     let filterTerms = this.state.filtered_beaches
-    //     let filteredBeaches = filterTerms.filter(beach => beach.location.toLowerCase().startsWith(searchTerm, 0))
-    //     // if(filteredBeaches.length){
-    //         this.setState({filtered_beaches:filteredBeaches})
-    //     // }else{
-    //     //     this.setState({filtered_beaches:this.state.beach_list, beach_search:""})
-    //     // }
-    // }
-    // setExpanded(){
-    //     this.setState({
-    //         open:!this.state.open
-    //     })
-    // }
-    // selectBeach(e){
-    //     e.preventDefault()
-    //     this.setState({
-    //         beach_search:e.target.value,
-    //         selected_beach:e.target.value,
-    //         confirmed:false,
-    //     }, this.filterBeaches(e.target.value))
-    // }
-    // selectDate(e){
-    //     e.preventDefault()
-    //     this.setState({
-    //         date:e.target.value,
-    //         confirmed:false,
-    //     })
-    // }
-    selectType(e){
+    filterCodes(targetValue){
+        let searchTerm = targetValue.toLowerCase()
+        let filteredCodes = this.props.codes.filter(obj => obj.code.toLowerCase().startsWith(searchTerm, 1))
+        this.setState({filteredCodes:filteredCodes})
+    }
+    searchTerm(e){
         e.preventDefault()
         this.setState({
-            beachSearchCategory:e.target.id
+            searchTerm:e.target.value
+        },this.filterCodes(e.target.value))
+    }
+    selectMaterial(e){
+        e.preventDefault()
+        const materialGroups = () => {
+            if(this.props.codes){
+                return ({
+                    Plastic:this.props.codes.filter(obj => obj.material === "Plastic"),
+                    Wood:this.props.codes.filter(obj => obj.material === "Wood"),
+                    Metal:this.props.codes.filter(obj => obj.material === "Metal"),
+                    Rubber:this.props.codes.filter(obj => obj.material === "Rubber"),
+                    Paper:this.props.codes.filter(obj => obj.material === "Paper"),
+                    Glass:this.props.codes.filter(obj => obj.material === "Glass"),
+                    Unidentified:this.props.codes.filter(obj => obj.material === "Unidentified")
+                })
+            }
+        }
+        this.setState({
+            filteredCodes:materialGroups()[e.target.id]
         })
     }
-    selectRegion(e){
+    selectCode(e){
         e.preventDefault()
         this.setState({
-            region:e.target.id
+            selectedCode:e.target.id,
+            filteredCodes:[]
         })
     }
-    selectBeach(e){
+    codeQuantity(e){
         e.preventDefault()
         this.setState({
-            selectBeach:e.target.id
+            codeQuantity:e.target.value,
+            disableButton:false,
         })
     }
-    selectedBeach(e){
+    addToInventory(e){
         e.preventDefault()
-        console.log(e.target.id)
+        let codeAndQuantity = {name:"codeAndQuantity", code:this.state.selectedCode, quantity:this.state.codeQuantity}
+        this.props.addToInventory(codeAndQuantity)
         this.setState({
-            selectedBeach:e.target.id
+            disableButton:true,
+            codeQuantity:"",
+            selectedCode:"",
+            searchTerm:"",
         })
     }
     render(){
-        console.log(this.state)
-        const lakesRivers = {
-            lakes:["lake-one", "lake-two", "lake-three"],
-            rivers:["river-one", "river-two", "river-three"]
-
-        }
-        const availableBeaches = {
-            "lake-one":["l-one-1", "l-one-2"],
-            "lake-two":["l-two-2", "l-two-3"],
-            "lake-three":["l-three-1", "l-three-2"],
-            "river-one":["r-one-1", "r-one-2"],
-            "river-two":["r-two-3", "r-two-1"],
-            "river-three":["r-three-1", "r-three-4"]
-        }
-        const beachToSurvey = () => {
-            var label
-            if(this.state.selectedBeach) {
-                label = `Survey ${this.state.selectedBeach}`
-            }else{
-                label = "No beach selected"
-            }
-            return label
-        }
         return(
-            <div className="modal-column-full-width">
-                <div className="row-no-wrap no-wrap">
-                    <h6>This is the code selector</h6>
-                </div>
-                <div className="row-no-wrap">
-                     <Button
-                         buttonclass="navButton"
-                         id="lakes"
-                         callback={this.selectType}
-                         label="Lakes"
-                     />
-                     <Button
-                         buttonclass="navButton"
-                         id="rivers"
-                         callback={this.selectType}
-                         label="Rivers"
-                     />
-                </div>
-                <motion.div
-                    variants={slideDown}
-                    initial={false}
-                    animate={this.state.beachSearchCategory ? "open":"closed"}
-                    className="row-wrap"
-                    >
-                    <div className="no-wrap">
-                        choose one:
-
+                <div className="inner-column-div">
+                    <div className="form-section-header">
+                        <h6 className=" text-center">Add objects to survey</h6>
+                        <p className="">Select material type or enter a code number to see available choices: </p>
                     </div>
-                    {
-                            this.state.beachSearchCategory ?
-                                lakesRivers[this.state.beachSearchCategory].map((a_lake, i) =>
+                    <div className="row-wrap">
+                         <Button
+                             buttonclass="formButton"
+                             id="Plastic"
+                             callback={this.selectMaterial}
+                             label="Plastic"
+                         />
+                         <Button
+                             buttonclass="formButton"
+                             id="Wood"
+                             callback={this.selectMaterial}
+                             label="Wood"
+                         />
+                         <Button
+                             buttonclass="formButton"
+                             id="Rubber"
+                             callback={this.selectMaterial}
+                             label="Rubber"
+                         />
+                         <Button
+                             buttonclass="formButton"
+                             id="Paper"
+                             callback={this.selectMaterial}
+                             label="Paper"
+                         />
+                         <Button
+                             buttonclass="formButton"
+                             id="Metal"
+                             callback={this.selectMaterial}
+                             label="Metal"
+                         />
+                         <Button
+                             buttonclass="formButton"
+                             id="Glass"
+                             callback={this.selectMaterial}
+                             label="Glass"
+                         />
+                         <Button
+                             buttonclass="formButton"
+                             id="Unidentified"
+                             callback={this.selectMaterial}
+                             label="Unidentified"
+                         />
+                    </div>
+                    <div className="row-wrap">
+                        <label className="display-inline-b label-position label-format">
+                            <h6 className="">Or search by code:</h6>
+                            <input
+                                className="inputTall"
+                                type="number"
+                                id="codeSearch"
+                                name="codeSearch"
+                                value={this.state.searchTerm || ""}
+                                onChange={this.searchTerm}
+                            />
+                        </label>
+                    </div>
+                    <motion.div
+                        variants={slideDownAuto}
+                        initial={false}
+                        animate={this.state.filteredCodes ? "open":"closed"}
+                        className="row-wrap-stretch"
+                        >
+                        {
+                            this.state.filteredCodes ?
+                                this.state.filteredCodes.map((a_lake, i) =>
                                     <Button
                                         key={i}
-                                        buttonclass="navButton"
-                                        id={a_lake}
-                                        callback={this.selectRegion}
-                                        label={a_lake}
-                                        />
-                            ):<div>There was an error, sorry.</div>
-                    }
-
-                </motion.div>
-                <motion.div
-                    variants={slideDown}
-                    initial={false}
-                    animate={availableBeaches[this.state.region] ? "open":"closed"}
-                    className="row-wrap"
-                    >
-                    <div className="no-wrap">
-                        Select a beach:
-
+                                        buttonclass="formButton formButtonBorder"
+                                        id={a_lake.code}
+                                        value={a_lake.code}
+                                        callback={this.selectCode}
+                                        label={`${a_lake.code}: ${a_lake.description}`}
+                                    />
+                                ):<div>There was an error, sorry.</div>
+                        }
+                    </motion.div>
+                    <div className="row-wrap label-format">
+                        {
+                            this.state.selectedCode ? <h6 className="">Code selected: {this.state.selectedCode}</h6>:null
+                        }
                     </div>
-                    {
-                            availableBeaches[this.state.region]  ?
-                                availableBeaches[this.state.region].map((a_lake, i) =>
-                                    <Button
-                                        key={i}
-                                        buttonclass="navButton"
-                                        id={a_lake}
-                                        callback={this.selectedBeach}
-                                        label={a_lake}
-                                        />
-                            ):<div>There was an error, sorry.</div>
-                    }
-
-                </motion.div>
-
-
-                {/*
-                <AnimatePresence initial={true}>
-                {
-                    this.state.filtered_beaches ? (
-                        this.state.filtered_beaches.map( (choice, i) =>{
-                            return (
-                                <motion.div variants={slideIn} key={choice.location} exit="closed" className="button-wrapper">
-                                    <button
-                                        className="dynamic-select dynamic-button"
-                                        id={choice.location}
-                                        name="beach"
-                                        key={choice.location}
-                                        value={choice.location}
-                                        onClick={this.selectBeach}
-                                        >
-                                        {choice.location}
-                                    </button>
-                                </motion.div>
-                            )
-                        })
-                    ):null
-                }
-               </AnimatePresence>
-               */}
-               <div className="row-no-wrap">
-                    <Button
-                    buttonclass="navButton"
-                    id="constrolButton"
-                    callback={this.props.seeModal}
-                    label={<Close size={24} color="red" />}
-                    />
-                    <Button
-                    buttonclass="navButton"
-                    id="selectedBeach"
-                    value={this.state.selectedBeach}
-                    callback={this.props.logData}
-                    label={beachToSurvey()}
-                    />
-
-               </div>
-            </div>
+                    <div className="row-wrap" >
+                        <label className="display-inline-b label-position label-format">
+                            <h6 className="">Quantity:</h6>
+                            <input
+                                className="inputTall"
+                                type="number"
+                                min="1"
+                                id="codeQuantity"
+                                name="codeQuantity"
+                                value={this.state.codeQuantity || ""}
+                                onChange={this.codeQuantity}
+                            />
+                        </label>
+                    </div>
+                    <div className="row-wrap label-format">
+                        {
+                            this.state.selectedCode && this.state.codeQuantity ? (
+                                <DisableButton
+                                    buttonclass="formButtonSelect"
+                                    id="addToSurvey"
+                                    value={{code:this.state.selectedCode, quantity:this.state.codeQuantity}}
+                                    callback={this.addToInventory}
+                                    label={`Add ${this.state.codeQuantity} of ${this.state.selectedCode} to survey`}
+                                    disabled={this.state.disableButton}
+                                />
+                            ):null
+                        }
+                    </div>
+                </div>
         )
     }
 }

@@ -26,7 +26,7 @@ button {
     background-color: #fff;
 }
 .headerButton {
-    background-color: rgba(4, 61, 61, 0.3);
+    background-color: #fff;
     padding:.1rem;
     min-height: 50px;
     box-sizing: border-box;
@@ -38,21 +38,97 @@ button {
     background-color: #000;
     transform: scale(.98);
 }
-.navButton{
-    flex:1 0 20%;
-    color:#0e15eb;
-    background-color: #50c7c7;
-    margin:.25rem;
-    transition: all .1s;
-    padding-left:.5rem;
-    padding-right: .5rem;
-    border-radius: .25rem;
+
+.navButtonHeader{
+  min-height:7vh;
 }
-.navButton:hover, .navButton:focus{
-    border: 1px solid #50c7c7;
-    color:#50c7c7;
+.navButton, .navButtonHeader{
+    flex:0 1 auto;
+    color:#091c1c;
+    background-color: rgba(9, 41, 89, .6);
+    border: thin solid #fff;
+    padding:.5rem .5rem;
+    transition: background 250ms ease-in-out,
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height:auto;
+}
+.navButton:hover, .navButton:focus, .navButtonHeader:hover, .navButtonHeader:focus{
+    border: 1px solid rgba(9, 41, 89, 1);
+    color:rgba(9, 41, 89, 1);
     background-color:#fff;
 }
-.navButton:active, .cardButton:active {
+.navButton:active,.navButtonHeader:active, .cardButton:active {
     transform: scale(.92)
+}
+.navButton:disabled, .navButtonHeader:disabled{
+    opacity:0.5;
+}
+.formButton:hover, .formButton:focus{
+    border: thin solid #091c1c;
+    color:#091c1c;
+    background-color:#c8dede;
+    transform: scale(.98)
+}
+.sectionNavButton {
+    flex:1 0 auto;
+}
+.formButton, .formButtonTab{
+    flex:0 0 19%;
+}
+.formButton, .formButtonTab, .sectionNavButton{
+    box-sizing: border-box;
+    color:#091c1c;
+    background-color: #fff;
+    transition: all .15s;
+    padding-left:.5rem;
+    padding-right: .5rem;
+    height:auto;
+}
+.formButtonSelect{
+    flex:1 0 40%;
+    box-sizing: border-box;
+    color:#000;
+    background-color: rgba(9, 41, 89, .6);
+    transition: all .15s;
+    padding-left:.5rem;
+    padding-right: .5rem;
+    height:auto;
+    border: thin solid rgba(9, 41, 89, .6);
+}
+.formButtonSelect:hover , .formButtonSelect:focus{
+    border: 1px solid rgba(9, 41, 89, 1);
+    color:rgba(9, 41, 89, 1);
+    background-color:#fff;
+}
+.sectionNavButton:hover, .sectionNavButton:focus,{
+    border-radius:.25rem;
+    border:thin solid blue;
+}
+.formButtonTab{
+    border-radius-top-left:.25rem;
+    border-top:thin solid #091c1c;
+    border-left: thin solid #091c1c;
+    border-right: thin solid #091c1c;
+}
+.formButtonBorder{
+    border: thin solid #091c1c;
+    margin:.1rem;
+}
+.formTabButtonBorder{
+    border-bottom:thin solid #091c1c;
+}
+.formTabBorder{
+    border-bottom:thin solid #091c1c;
+    border-left: thin solid #091c1c;
+    border-right: thin solid #091c1c;
+}
+.formButton:active, .formButtonSelect:active{
+    transform: scale(.94)
+}
+@media screen and (max-width:780px){
+    .sectionNavButton{
+        flex:1 0 100%;
+    }
 }

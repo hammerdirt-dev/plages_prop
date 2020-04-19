@@ -1,15 +1,9 @@
 import React, {Component} from 'react'
 import '../../css/cards.css'
-import '../../css/buttons.css'
-import Button from '../button/buttons'
-
 
 class CalendarCard extends Component{
-    constructor(props){
-        super(props);
-    };
     render(){
-        const {date, summary, description} = this.props
+        const {date, summary, description, location} = this.props
         return(
             <div className="calendar-card-row-content">
                 <div className="calendar-card-title">
@@ -17,6 +11,9 @@ class CalendarCard extends Component{
                 </div>
                 <div className="calendar-card-summary">
                     {summary}
+                </div>
+                <div className="calendar-card-summary">
+                    {location}
                 </div>
                 <div className="calendar-card-desc">
                     {description}

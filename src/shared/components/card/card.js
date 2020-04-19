@@ -5,18 +5,15 @@ import Button from '../button/buttons'
 
 
 class Card extends Component{
-    constructor(props){
-        super(props);
-    };
     render(){
         const {cardDescription, cardTitle, ...buttonProps} = this.props
         return(
             <div className="card">
-                <div className="card-title">
+                <div className="card-title font-one-point-two">
                     {cardTitle}
                 </div>
                 <Button {...buttonProps} />
-                <div className="card-desc">
+                <div className="card-desc font-point-ninefive">
                     {cardDescription}
                 </div>
             </div>
