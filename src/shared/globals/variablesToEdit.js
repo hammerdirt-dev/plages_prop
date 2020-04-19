@@ -10,14 +10,14 @@ import {
     LIST_OF_USERS,
     WATER_BODY_CODE_TOTAlS,
     CITY_CODE_TOTALS,
-    POST_CODE_TOTAlS,
     ARTICLE_SEARCH_TERMS,
     DAILY_TOTALS_PCS_M,
     LIST_OF_BEACHES_CATEGORY,
     LIST_OF_CATEGORIES,
     LOCATION_SURVEY_DETAILS,
     ARTICLE_LIST,
-    LATEST_DAILY_TOTALS
+    LATEST_DAILY_TOTALS,
+    SURVEY_RESULTS,
 } from '../../components/api/apiUrls'
 export const name = "BeachLitterOne"
 export const version = 14
@@ -135,7 +135,6 @@ export const theDataStores = [
     {store:"dailyTotals", url:DAILY_TOTALS_PCS_M},
     {store:"waterBodyCodeTotals", url:WATER_BODY_CODE_TOTAlS},
     {store:"cityCodeTotals", url:CITY_CODE_TOTALS},
-    {store:"postCodeTotals", url:POST_CODE_TOTAlS},
     {store:"beachesByCategory", url:LIST_OF_BEACHES_CATEGORY},
     {store:"beachCategories", url:LIST_OF_CATEGORIES},
     {store:"articleSearchList", url:ARTICLE_SEARCH_TERMS},

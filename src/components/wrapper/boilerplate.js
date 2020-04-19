@@ -58,11 +58,13 @@ class AppWrapper extends Component{
         this.updateDBStatus = this.updateDBStatus.bind(this)
         this.getAllStores = this.getAllStores.bind(this)
         this.isThereData = this.isThereData.bind(this)
+
     };
     async componentDidMount(){
         this.setState({
           indexed:checkForDb(window)
         })
+
     }
     componentDidUpdate(prevProps, prevState){
         if(this.state.indexed && this.state.indexed !== prevState.indexed){
@@ -102,6 +104,7 @@ class AppWrapper extends Component{
             indexedData:true,
             currentapp:"Home",
             updateComponent:newDate,
+            isoDate:a_date ? a_date.toISOString():false
         })
       }else{
         this.setState({
@@ -192,6 +195,7 @@ class AppWrapper extends Component{
             calendarError:error,
         })
     }
+
     render(){
         const availableApps = appsToLoad(this.state)
         const headerProps = {
@@ -245,6 +249,7 @@ class AppWrapper extends Component{
                     getData={this.state.updateDB}
                     updateDBStatus={this.updateDBStatus}
                     isThereData={this.isThereData}
+                    isoDate={this.state.isoDate}
                   />
 
                   ):null

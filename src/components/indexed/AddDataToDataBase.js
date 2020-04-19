@@ -12,6 +12,7 @@ class GetNewData extends Component {
         }
         this.getAndAddData = this.getAndAddData.bind(this)
         this.addDateOfUpdate = this.addDateOfUpdate.bind(this)
+        // this.makeTheApiCalls = this.makeTheApiCalls.bind(this)
     }
     async componentDidMount() {
         console.log("mounting add data")
@@ -64,27 +65,21 @@ class GetNewData extends Component {
         }
     }
     getAndAddData = (database, callback) =>{
-        console.log("fetching data from server")
-        theDataStores.forEach(obj =>{
-            fetch(obj.url)
-                .then(response =>  response.json()
-                .then(data => ({status: response.status, body: data})))
-                .then(theData => {
-                    this.addDataToDataBase(theData.body, obj.store, database, callback)
-                })
-
-        })
-        this.addDateOfUpdate(database)
-
-
+      Promise.all(theDataStores.map(obj => fetch(obj.url)))
+          .then(function(replys){
+            return Promise.all(replys.map(obj => obj.json()))
+          })
+          .then(data => data.forEach((obj,i)=> this.addDataToDataBase(obj, theDataStores[i].store, database, callback)))
+          .catch(this.addDateOfUpdate(database))
     }
     addDateOfUpdate(dataBase){
       console.log("setting update")
-        const now = new Date()
-        this.addDataToDataBase([{date:now, lastUpdate:now}], "lastUpdate", dataBase, this.props.isThereData)
+      const now = new Date()
+      this.addDataToDataBase([{date:now, lastUpdate:now}], "lastUpdate", dataBase, this.props.isThereData)
 
     }
     render(){
+      console.log(this.props.isoDate)
         return(
             null
         )
