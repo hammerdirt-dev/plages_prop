@@ -58,7 +58,6 @@ class AppWrapper extends Component{
         this.updateDBStatus = this.updateDBStatus.bind(this)
         this.getAllStores = this.getAllStores.bind(this)
         this.isThereData = this.isThereData.bind(this)
-
     };
     async componentDidMount(){
         this.setState({
@@ -112,8 +111,7 @@ class AppWrapper extends Component{
             indexedData:false
         })
       }
-
-      }
+    }
     dataBaseState(obj){
       // returns {status:true, action:"transaction", store:`${name}DbTx`}
       // from the txSuccessFunction on the db
@@ -186,7 +184,7 @@ class AppWrapper extends Component{
         })
     }
     calendarCallback(days){
-        this.setState({
+      this.setState({
             events:days,
         })
     }

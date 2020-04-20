@@ -25,13 +25,9 @@ class Locations extends Component{
           })
 
         }
-
     }
     componentWillUnmount() {
         this._isMounted = false
-    }
-    componentDidUpdate(prevProps, prevState){
-
     }
     showEvent(e){
         e.preventDefault()
@@ -41,10 +37,7 @@ class Locations extends Component{
       const projectBeach = this.props.beaches.filter(obj => obj.is_2020)
       return projectBeach
     }
-
     render(){
-      console.log(this.state)
-
         return(
             <motion.div
                 className="outer-row"

@@ -5,45 +5,12 @@ import '../../css/main.css'
 import '../../css/cards.css'
 import CalendarCard from '../card/CalendarCard'
 
-
-
 class CalendarBlock extends Component {
-    constructor(props){
-        super(props)
-        this.queryBuilder = this.queryBuilder.bind(this)
-        this.queryCalendar = this.queryCalendar.bind(this)
-    };
     componentDidMount(){
         this._isMounted = true
     }
-    queryBuilder(days){
-        var today = new Date();
-        let less_than = today.setDate(today.getDate() + days);
-        today = new Date()
-        let greater_than = today.setDate(today.getDate() -1);
-        return [greater_than, today,less_than];
-    }
-    queryCalendar(query,events){
-        let days = []
-        // console.log(events)
-        events.forEach(function(day){
-            if(day.status === 'confirmed'){
-              // console.log(day.summary)
-              // console.log(day.start.date)
-              // console.log(day.location)
-              const date = Date.parse(day.start.date)
-              const beforeDate = Date.parse(new Date(query[0]))
-              const afterDate = Date.parse(new Date(query[2]))
-              if(date < afterDate && date > beforeDate){
-                  days.push(day)
-            }
-          }
-        })
-        days.sort(function(a,b){
-            return  new Date(a.start.date) - new Date(b.start.date)
-        })
-        const calendarProps = days.map(day => ({date:new Date(day.start.date), summary:day.summary, description:day.description, location:day.location}))
-        return calendarProps
+    componentWillUnmount() {
+        this._isMounted = false
     }
     render(){
         const titleProps = {
@@ -53,17 +20,18 @@ class CalendarBlock extends Component {
         }
         const makeCardProps = () => {
             if(this.props.calendarProps){
-                const x = this.queryCalendar(this.queryBuilder(20), this.props.calendarProps)
-                return x
+              return this.props.calendarProps.reverse()
             }else{
-                return ([
-                    {
-                        date:new Date(),
-                        summary:"Do you have a network connection? Give it a second to see if it updates!",
-                        content:this.props.title,
-                        className:this.props.titleBlock
-                    }
-                ])
+              var aNewDate = new Date()
+
+              return ([
+                  {
+                      date:aNewDate.getDate(),
+                      summary:"Do you have a network connection? Give it a second to see if it updates!",
+                      content:this.props.title,
+                      className:this.props.titleBlock
+                  }
+              ])
             }
         }
         const cardProps = makeCardProps()

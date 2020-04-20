@@ -12,6 +12,7 @@ import Button from '../../shared/components/button/buttons'
 import ViewerContainer from '../../shared/components/articleViewer/viewerContainer'
 import {sumOfObjects, truncate} from '../../shared/utilities/jsHelper/helperMethods'
 import {codeLookUp} from '../../shared/utilities/jsHelper/stats'
+import {PUBLIC_CALENDAR} from '../api/apiUrls'
 
 
 class Home extends Component{
@@ -30,9 +31,7 @@ class Home extends Component{
         this.latestSurveys = this.latestSurveys.bind(this)
         this.selectASurvey = this.selectASurvey.bind(this)
         this.closeSurvey = this.closeSurvey.bind(this)
-
-
-    };
+    }
     componentDidMount(){
         this._isMounted = true
         this.setState({
@@ -82,7 +81,6 @@ class Home extends Component{
       })
       window.scrollTo({top:0,left:0, behavior:'smooth'})
     }
-
     selectASurvey(e){
       e.preventDefault()
       let locationData = this.props.surveyDetails.filter(obj => obj.location === e.target.value)
@@ -114,8 +112,8 @@ class Home extends Component{
       theLatestSurveys = theLatestSurveys.sort((a,b) => new Date(a.jsDate) - new Date(b.jsDate))
       return theLatestSurveys.reverse()
     }
-
     render(){
+
       let theMostRecent = () => {
         if(this.state.latestDailyTotals){
           return this.latestSurveys(this.state.latestDailyTotals)
@@ -126,21 +124,24 @@ class Home extends Component{
       const calendarProps = {
           title:"Our activities",
           content:"Visit us in the field, contact info@hammerdirt.ch to accompany us on a survey.",
-          summary: <strong>Office hours: monday-saturday, 8am-12.</strong>,
+          summary: <span><strong>Office hours: monday-saturday, 8am-12.</strong> <br/><br/> <a href={PUBLIC_CALENDAR}  rel="noopener noreferrer" target="_blank"> The full calendar </a></span>,
           calendarProps:this.props.events
       }
+
       const buttonProps = {
           callback:this.showEvent,
           buttonclass: "cardButton",
           id:"A button id",
           label:"Close",
-      };
+      }
+
       const closeSurveyButton = {
           callback:this.closeSurvey,
           buttonclass: "cardButton",
           id:"A button id",
           label:"Close",
-      };
+      }
+
       const titleSummary = 'The collection of data on beach litter provides information on amounts, trends and sources of the trash in swiss waterways. '+
                            'This information can be used to identify effective mitigating techniques and to test the effectiveness of existing strategies.'
       const titleProps =
@@ -149,7 +150,7 @@ class Home extends Component{
               titleBlock:"title-block",
               titleSum:<p className="pad-point3-rem">{titleSummary}</p>,
               titleSumBlock:"title-sum-block"
-          };
+          }
         return(
 
                 <motion.div

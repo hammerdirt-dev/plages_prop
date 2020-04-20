@@ -1,4 +1,4 @@
-/* global gapi */
+
 import {Component} from 'react'
 import './apiUrls.js'
 import {getSomeData, returnSomeData} from './httpMethods.js'
@@ -21,29 +21,43 @@ class FetchData extends Component{
         this.getEvents()
       }
     }
-    getEvents(){
-        //Queries the google calendar api
-        let that = this;
-        const timeMin= new Date()
-        const yesterday = new Date(timeMin.setDate(timeMin.getDate() -1))
-        const timeLater = new Date()
-        const future = new Date(timeLater.setDate(timeLater.getDate() + 30))
-        function start() {
-            gapi.client.init({
-                'apiKey': GOOGLE_API_CAL
-            }).then(function() {
-                return gapi.client.request({
-                    'path': CALENDAR_PATH,
-                    'params': {
-                        'timeMin':yesterday.toISOString(),
-                        'timeMax':future.toISOString()
-                    }
-                })
-            }).then( (response) => {
-                    that.props.calendarCallback(response.result.items)
-            }, reason => that.props.calendarError(reason) )
+    makeIsoDate = () => {
+      var today = new Date()
+      return(
+        today.toISOString()
+      )
+    }
+    getEventObjects = (anEvent) => {
+      // formatting for the calendar blocks prop
+      if(anEvent.status === 'confirmed'){
+        let toDisplay={}
+        if(anEvent.start && anEvent.start.date && anEvent.status === 'confirmed' && anEvent.summary){
+          toDisplay.status = anEvent.status
+          toDisplay.date = anEvent.start.date
+          toDisplay.unixDate = Date.parse(anEvent.start.date)
+          toDisplay.location = anEvent.location
+          toDisplay.summary = anEvent.summary
+          toDisplay.description = anEvent.description
+          return toDisplay
+        }else if(anEvent.start && anEvent.start.dateTime && anEvent.status === 'confirmed' && anEvent.summary){
+          let toDisplay={}
+          toDisplay.date = anEvent.start.dateTime.slice(0,10)
+          toDisplay.unixDate = Date.parse(toDisplay.date)
+          toDisplay.location = anEvent.location
+          toDisplay.summary = anEvent.summary
+          toDisplay.description = anEvent.description
+          return toDisplay
         }
-        gapi.load('client', start)
+      }
+    }
+    getEvents(){
+      //Queries the google calendar api
+      let today = this.makeIsoDate()
+      var apiCall = `${CALENDAR_PATH}?key=${GOOGLE_API_CAL}&timeMin=${today}`
+      fetch(apiCall).then(response => response.json())
+        .then(data => {return data.items.filter(obj => obj.status === 'confirmed')}).then(filtered => filtered.map(obj => this.getEventObjects(obj)))
+        .then(anArray => anArray.sort((a,b) => a.unixDate - b.unixDate))
+        .then(calendarItems => {return this.props.calendarCallback(calendarItems)})
     }
     render(){
         return(
