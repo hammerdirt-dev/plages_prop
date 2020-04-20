@@ -57,8 +57,6 @@ class Results extends Component{
             codeKeys:codeLookUp(this.props.codes),
             sourceKeys:getKeys(this.props.codes, 'source'),
             materialKeys:getKeys(this.props.codes, 'material'),
-
-
         })
     }
     componentWillUnmount() {

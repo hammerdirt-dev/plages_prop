@@ -19,6 +19,7 @@ button {
     background-color: #e4ebe4;
     padding:.5rem;
     border: 1px solid #e4ebe4;
+    font-family: "RubikRegular"
 }
 .cardButton:hover, .cardButton:focus{
     border: 1px solid blue;
@@ -41,6 +42,8 @@ button {
 
 .navButtonHeader{
   min-height:7vh;
+  font-family: "RubikRegular";
+  letter-spacing: .2rem;
 }
 .navButton, .navButtonHeader{
     flex:0 1 auto;
@@ -73,13 +76,18 @@ button {
 }
 .sectionNavButton {
     flex:1 0 auto;
+    font-family: "RubikRegular";
+    text-transform:uppercase;
+    color:blue;
+
 }
 .formButton, .formButtonTab{
     flex:0 0 19%;
+    color:#091c1c;
 }
 .formButton, .formButtonTab, .sectionNavButton{
     box-sizing: border-box;
-    color:#091c1c;
+    /* color:#091c1c; */
     background-color: #fff;
     transition: all .15s;
     padding-left:.5rem;

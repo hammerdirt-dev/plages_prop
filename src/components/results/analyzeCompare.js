@@ -233,31 +233,31 @@ class AnalyzeCompare extends Component{
                 variants={slideIn}
                 >
                 <div className="column-full-width background-white">
-                    <div className="block-row">
-                        <div className="inline-block-50 ">
+                <div className="block-row pad-point3-rem">
+                    <div className="inline-block-50-left pad-one-rem">
                             <h6>Start</h6>
-                            <p className="pad-point3-rem">
+                            <p >
                                 Begin by selecting either lake or river. Then select one the available categories. <strong>This will give you the average or the median value
-                                of all the individual survey results for that location."</strong>.
+                                of all the individual survey results for that location.</strong>.
                             </p>
-                            <p className="pad-point3-rem">
+                            <p >
                                 The categories are defined in the project tab, under methods. Each category is a group of objects that have a similar use case or source.
                             </p>
-                            <span className="rubik text-bold font-one-rem">All results are an indicator of the minimum quantity and type of objects present on the shoreline on the date of the survey.</span>
+                            <span className="rubik font-one-rem">All results are an indicator of the minimum quantity and type of objects present on the shoreline on the date of the survey.</span>
                         </div>
-                        <div className="inline-block-50 pad-one-rem">
+                        <div className="inline-block-50-left pad-one-rem">
                             <h6>Interpreting results</h6>
-                            <p className="pad-point3-rem" >
-                                <span className="rubik strong">Median</span>: the median is the survey result that separates the lower half of the results from the higher half. It gives
+                            <p >
+                                <strong>Median</strong>: the median is the survey result that separates the lower half of the results from the higher half. It gives
                                 a better indication of what a "typical value" is for that body of water.
                             </p>
-                            <p className="pad-point3-rem">
-                                <span className="rubik strong">Average</span>: the arithmetic mean is the sum all values for that category, divided by the number of surveys for that location. Easy to understand, it is very sensitive
+                            <p >
+                                <strong>Average</strong>: the arithmetic mean is the sum all values for that category, divided by the number of surveys for that location. Easy to understand, it is very sensitive
                                 to extreme values and is not an indicator of typical values or central tendency.
                             </p>
                         </div>
                     </div>
-                    <div className="block-row">
+                    <div className="block-row pad-point3-rem">
                         <div className="inline-block-50">
                             <p className="text-blue marg-top-one-rem">
                                 {

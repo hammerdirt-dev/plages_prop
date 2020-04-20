@@ -48,7 +48,7 @@ class Analysis extends Component{
     }
     showEvent(e){
         e.preventDefault()
-        const selectedArticle = this.props.currentArticles.result.filter(obj => obj.slug === e.target.id)
+        const selectedArticle = this.props.currentArticles.filter(obj => obj.slug === e.target.id)
         if (this.state.seenotes){
             window.scrollTo(0,this.state.yOffset)
             this.setState({
@@ -84,6 +84,7 @@ class Analysis extends Component{
         })
     }
     render(){
+      
         const sectionsToLoad = this.analysisSectionsToLoad()
         const devNotes = getFilteredDocs(this.props.currentArticles, "Dev notes", this.showEvent)
         const titleSummary = "Exploration of the survey data in the context of time and geography. Here we introduce the different methods as they develop over the course of the project. For details see the Dev notes or the repository concerned."

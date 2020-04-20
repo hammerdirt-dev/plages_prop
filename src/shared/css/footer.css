@@ -32,9 +32,11 @@
     display: inline-block;
     width:90%;
     padding:.5rem;
+    font-family: "RubikMedium"
 }
 .footer-attribution{
   font-size: .9rem;
+  font-family: "RubikRegular"
 }
 @media screen and (max-width:780px){
     .footer-wrapper {

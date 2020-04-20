@@ -190,20 +190,20 @@ class CommonObjects extends Component{
                 >
 
                     <div className="column-full-width background-white">
-                        <div className="block-row">
-                            <div className="inline-block-50 ">
+                    <div className="block-row pad-point3-rem">
+                        <div className="inline-block-50-left pad-one-rem">
                                 <h6> The six most common objects</h6>
-                                <p className="pad-point3-rem">
+                                <p >
                                     Select one of the the four criteria. This represents the average or median of the individual survey results for each survey site and each object code at identified at that body of water.
                                 </p>
                                 <p>
                                   The six most common objects represent 60-80% of the total value for most surveys. Thus giving an approximate view of the most abundant trash items on a given body of water.
                                 </p>
-                                <span className="rubik text-bold font-one-rem">All results are an indicator of the minimum quantity and type of objects present on the shoreline on the date of the survey.</span>
+                                <span className="rubik font-one-rem">All results are an indicator of the minimum quantity and type of objects present on the shoreline on the date of the survey.</span>
                             </div>
-                            <div className="inline-block-50 pad-one-rem">
-                                <p className="pad-point3-rem">
-                                  <span className="rubik text-bold">Accounting for zero:</span> the survey results are a list of objects and quantities identified at a given location. Once an object
+                              <div className="inline-block-50-left pad-one-rem">
+                                <p >
+                                  <strong>Accounting for zero:</strong> the survey results are a list of objects and quantities identified at a given location. Once an object
                                   has been identified on a lake or river it is added to the "master list" for that region. All surveys are then compared to the master list. If the individual survey does not have
                                   an entry for an object on the master list, an entry is made in the survey for that object with a value of zero.
                                 </p>
@@ -213,14 +213,14 @@ class CommonObjects extends Component{
                                 </p>
                             </div>
                         </div>
-                        <div className="block-row">
-                            <div className="inline-block-50">
+                        <div className="block-row pad-point3-rem">
+                            <div className="inline-block-50-left pad-one-rem">
                                 <h6>Interpreting results</h6>
-                                <p className="pad-point3-rem" >
-                                    <span className="rubik strong">Median</span>: the median value gives you an indication of the objects and the quantities you would most likely find if you were to do a survey on that lake or river.
+                                <p  >
+                                    <strong>Median</strong>: the median value gives you an indication of the objects and the quantities you would most likely find if you were to do a survey on that lake or river.
                                 </p>
-                                <p className="pad-point3-rem">
-                                    <span className="rubik strong">Average/mean</span>: the average is the cumulative sum of all survey results for that location and speaks only to results on a regional scale and not any survey result in particular.
+                                <p >
+                                    <strong>Average/mean</strong>: the average is the cumulative sum of all survey results for that location and speaks only to results on a regional scale and not any survey result in particular.
                                 </p>
                             </div>
                             <div className="inline-block-50">

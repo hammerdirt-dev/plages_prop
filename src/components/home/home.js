@@ -144,9 +144,10 @@ class Home extends Component{
 
       const titleSummary = 'The collection of data on beach litter provides information on amounts, trends and sources of the trash in swiss waterways. '+
                            'This information can be used to identify effective mitigating techniques and to test the effectiveness of existing strategies.'
+      const projectTitle = 'Identification, quantification and analysis of observable anthropogenic litter along Swiss freshwater systems.'
       const titleProps =
           {
-              title:<div><h4 className="pad-point3-rem">Litter surveyor</h4><p className="pad-point3-rem font-italics">Beach-litter surveys of Swiss rivers and lakes.</p></div>,
+              title:<div><h4 className="pad-point3-rem">Litter surveyor</h4><p className="pad-point3-rem font-italics">{projectTitle}</p></div>,
               titleBlock:"title-block",
               titleSum:<p className="pad-point3-rem">{titleSummary}</p>,
               titleSumBlock:"title-sum-block"

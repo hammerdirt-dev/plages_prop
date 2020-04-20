@@ -202,23 +202,23 @@ class RegionalData extends Component{
                             }
                         </div>
                     </motion.div>
-                    <div className="block-row">
-                        <div className="inline-block-50">
+                    <div className="block-row pad-point3-rem">
+                        <div className="inline-block-50-left pad-one-rem">
                             <h6>Start</h6>
-                            <p className="pad-point3-rem">
+                            <p >
                                 Begin by selecting either lake, river or city. Then Select one from the resulting list, if you don't see your region of interest then we have no data.
                             </p>
-                            <p className="pad-point3-rem">
+                            <p >
                                 The survey results for individual locations is available at the end of the regional survey. For each selection you will find:
                             </p>
-                            <ul className="pad-point3-rem">
-                              <li>Summary table of descriptive statistics for the selection</li>
-                              <li>Time series display of the total pieces/meter of each survey</li>
-                              <li>A drill down tree map of the total pieces for every source group</li>
-                              <li>A tree map of the total material composition of all objects</li>
+                            <ul>
+                              <li>Summary table </li>
+                              <li>Time series display</li>
+                              <li>A drill down tree map </li>
+                              <li>A tree map </li>
                             </ul>
                         </div>
-                        <div className="inline-block-50">
+                        <div className="inline-block-50-left pad-one-rem">
                             <p className="text-blue marg-top-one-rem">
                                 {
                                     this.state.selectedLocation ? `Selected: ${this.state.selectedLocation}`:`No location selected`
@@ -239,7 +239,7 @@ class RegionalData extends Component{
                                         )
                                 }
                             <p>
-                                <span className="rubik text-bold font-one-rem">All results are an indicator of the minimum quantity and type of objects present on the shoreline on the date of the survey.</span>
+                                <span className="rubik font-one-rem">All results are an indicator of the minimum quantity and type of objects present on the shoreline on the date of the survey.</span>
                             </p>
                         </div>
                     </div>

@@ -89,7 +89,7 @@ class Project extends Component{
         shores of seven different lakes in Switzerland.`
         const titleProps =
             {
-                title:<div><h4 className="pad-point3-rem">Project 20-21</h4><p className=" pad-point3-rem font-italics">Objectives, protocols and documents.</p></div>,
+                title:<div><h4 className="pad-point3-rem">Project 20-21</h4><p className="pad-point3-rem font-italics">Objectives, protocols and documents.</p></div>,
                 titleBlock:"title-block",
                 titleSum:<p className="pad-point3-rem">{titleSummary}</p>,
                 titleSumBlock:"title-sum-block"
