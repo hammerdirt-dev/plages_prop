@@ -20,10 +20,9 @@ class CalendarBlock extends Component {
         }
         const makeCardProps = () => {
             if(this.props.calendarProps){
-              return this.props.calendarProps.reverse()
+              return this.props.calendarProps.sort((a,b) => a.unixDate - b.unixDate)
             }else{
               var aNewDate = new Date()
-
               return ([
                   {
                       date:aNewDate.getDate(),

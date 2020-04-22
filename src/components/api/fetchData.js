@@ -49,15 +49,20 @@ class FetchData extends Component{
           return toDisplay
         }
       }
+
     }
     getEvents(){
       //Queries the google calendar api
-      let today = this.makeIsoDate()
-      var apiCall = `${CALENDAR_PATH}?key=${GOOGLE_API_CAL}&timeMin=${today}`
+      let a = new Date()
+      let b = new Date()
+      let c = b.setDate(b.getDate() + 30)
+      let timeMax = new Date(c).toISOString()
+      let timeMin = a.toISOString()
+      var apiCall = `${CALENDAR_PATH}?key=${GOOGLE_API_CAL}&timeMax=${timeMax}&timeMin=${timeMin}&singleEvents=true`
       fetch(apiCall).then(response => response.json())
         .then(data => {return data.items.filter(obj => obj.status === 'confirmed')}).then(filtered => filtered.map(obj => this.getEventObjects(obj)))
-        .then(anArray => anArray.sort((a,b) => a.unixDate - b.unixDate))
-        .then(calendarItems => {return this.props.calendarCallback(calendarItems)})
+        .then(anArray => {return this.props.calendarCallback(anArray)})
+
     }
     render(){
         return(
