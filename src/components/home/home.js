@@ -106,7 +106,8 @@ class Home extends Component{
           jsDate:new Date(obj.date),
           label:"See survey results",
           cardTitle:obj.location,
-          cardDescription:obj.date
+          cardDescription:obj.date,
+          key:`${obj.date}${obj.location}`
         })
       })
       theLatestSurveys = theLatestSurveys.sort((a,b) => new Date(a.jsDate) - new Date(b.jsDate))
@@ -302,7 +303,7 @@ class Home extends Component{
                                 <ContentBlock key={"homerecentsurveys"} {...{content:"Recent surveys", className:"section-block"}} />
                                   {
                                     theLastThree ?
-                                      theLastThree.map(survey => <Card key={survey.id} {...survey} />)
+                                      theLastThree.map(survey => <Card key={survey.key} {...survey} />)
                                     :
                                         <div>Waiting on data...</div>
 
