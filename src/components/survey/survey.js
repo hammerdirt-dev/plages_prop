@@ -84,7 +84,6 @@ class Survey extends Component{
         this.setState({
             ...load_this[0]
         })
-
     }
     logData(e){
         e.preventDefault()
@@ -311,9 +310,9 @@ class Survey extends Component{
           })
         }
         clearItemFromDb(e.target.value, name, version,indexedCallback)
-
     }
     render(){
+      console.log(this.state.codesAndQuantities)
         const lakesAndRivers = (lakes) => {
             if(this.props.beachCategories){
                 const places = this.props.beachCategories.filter(obj => obj.category === lakes)
@@ -706,7 +705,7 @@ class Survey extends Component{
                                                         this.state.codesAndQuantities.map( obj =>
                                                             (<div key={obj.code} className="t-row-row">
                                                                 <div className="t-row-code">
-                                                                    {obj.code}
+                                                                    {`${obj.code}: ${obj.description}`}
                                                                 </div>
                                                                 <div className="t-row-code-quantity">
                                                                     {obj.quantity}

@@ -14,6 +14,7 @@ import {truncate} from '../../shared/utilities/jsHelper/helperMethods'
 import hammerdirt2 from '../../shared/images/hammerdirt2.png'
 import dev_guy225 from '../../shared/images/dev_guy225.jpg'
 import shannon from '../../shared/images/shannon.jpg'
+import profile_hk from '../../shared/images/profile_hk.jpg'
 
 class Resources extends Component{
     constructor(props){
@@ -249,6 +250,18 @@ class Resources extends Component{
                         </div>
                       </div>
                       <div className="inline-block-25-single">
+                      <div className="flexCard70">
+                        <div className="profile-pic">
+                          <img src={profile_hk} alt="hammerdirt everyday" />
+                        </div>
+                        <div className="address-block">
+                          Helen Kurukulasuriya<br/>
+                          hammerdirt staff<br/>
+                          Translations<br/>
+                          Surveyor<br />
+                          info@hammerdirt.ch<br/><br/>
+                        </div>
+                      </div>
 
                       </div>
                   </div>

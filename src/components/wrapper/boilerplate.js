@@ -29,7 +29,7 @@ class AppWrapper extends Component{
     constructor(){
         super();
         this.state = {
-            loggedin:false,
+            loggedin:true,
             network:false,
             indexed:false,
             indexedData:false,
