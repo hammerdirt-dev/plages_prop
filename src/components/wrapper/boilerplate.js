@@ -29,7 +29,7 @@ class AppWrapper extends Component{
     constructor(){
         super();
         this.state = {
-            loggedin:true,
+            loggedin:false,
             network:false,
             indexed:false,
             indexedData:false,
@@ -42,7 +42,6 @@ class AppWrapper extends Component{
             authData:true,
             updated:[],
             currentArticles:false,
-
         }
         this.requestedApp = this.requestedApp.bind(this)
         this.dataBaseState = this.dataBaseState.bind(this)
@@ -63,7 +62,6 @@ class AppWrapper extends Component{
         this.setState({
           indexed:checkForDb(window)
         })
-
     }
     componentDidUpdate(prevProps, prevState){
         if(this.state.indexed && this.state.indexed !== prevState.indexed){

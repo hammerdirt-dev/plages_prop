@@ -5,6 +5,7 @@ import '../../shared/css/grids.css'
 import '../../shared/css/header.css'
 import '../../shared/css/main.css'
 import lac_leman_common from '../../shared/images/lac_leman_common.png'
+import quantityTime from '../../shared/images/quantityTime.svg'
 
 
 class Abundance extends Component{
@@ -84,24 +85,38 @@ class Abundance extends Component{
                           <p>
                             Charts are free to use, there is one chart for each lake in the current project. The title is <span className="font-italics">lake-name</span>-common-2015-2019. The charts can
                             be found in the repository folder <span className="font-italics">charts</span>, located <a href="https://github.com/hammerdirt-analyst/abundance-2021/tree/master/charts" rel="noopener noreferrer" target="_blank">here</a>.
-
                           </p>
-
-                      </div>
+                        </div>
                         <div className="inline-block-50-left pad-one-rem">
-
                           <img src={lac_leman_common} alt="Stacked bar chart of the most common items on lake geneva" />
-
-                      </div>
-
+                        </div>
                     </div>
-
-
-
-
-
+                    <div className="block-w-100 pad-one-rem marg-top-bot-point-five">
+                        <h6 className="border-bottom marg-one-rem">Survey metrics</h6>
+                        <img src={quantityTime} alt="Stacked bar chart of the most common items on lake geneva" />
                     </div>
-                    </motion.div>
+                    <div className="block-row pad-point3-rem">
+                        <div className="inline-block-50-left pad-one-rem">
+                          <p>
+                            The survey results give us lots of detailed information. The challenge is to use these results to find
+                            similarities between locations. One way to do that is to look at the variety of the objects found in relation to
+                            the number of objects found or the length of the shoreline.
+                          </p>
+                          <p >
+                           In this repo we start the process of looking at the survey metrics from the current results of this project. Why do some locations
+                           have a consistenly high number of objects, increased variety and greater than average pieces per meter? Looking at the image, patterns
+                           are already starting to emerge.
+                          </p>
+                        </div>
+                        <div className="inline-block-50-left pad-one-rem">
+                          <p>
+                            The charts in this repo are scatter charts of all the locations using different properties on the x or y axis. The title is <span className="font-italics">xaxisname-yaxisname</span>-daterange. The charts can
+                            be found in the repository folder <span className="font-italics">summary_dims or summary_scatter</span>, located <a href="https://github.com/hammerdirt-analyst/survey_qc/tree/master/charts" rel="noopener noreferrer" target="_blank">here</a>.
+                          </p>
+                        </div>
+                    </div>
+                  </div>
+                </motion.div>
 
         )
     }
