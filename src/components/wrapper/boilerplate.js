@@ -145,7 +145,6 @@ class AppWrapper extends Component{
         })
     }
     loginStatus(obj){
-        console.log(obj)
         this.setState(
             obj
         )
@@ -199,7 +198,6 @@ class AppWrapper extends Component{
     }
 
     render(){
-        console.log(this.state.userdata)
         const availableApps = appsToLoad(this.state)
         const headerProps = {
             updateComponent:this.state.updateComponent,

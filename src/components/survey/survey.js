@@ -79,8 +79,6 @@ class Survey extends Component{
     loadSaved(e){
         e.preventDefault()
         let load_this = this.props.draftSurvey.result.filter(obj => obj.surveyId === e.target.value)
-        console.log(e.target.value)
-        console.log(load_this)
         this.setState({
             ...load_this[0]
         })
@@ -261,7 +259,6 @@ class Survey extends Component{
         this.saveToServer("POST",data, SURVEY_TO_SERVER, this.props.token, this.surveyResponse)
     }
     indexedResponse(message){
-        console.log(message)
         this.setState({
           seeModal:true,
           surveyDataResponse:"survey data",
@@ -272,7 +269,6 @@ class Survey extends Component{
         console.log("saving to local")
         let keydata = `${this.state.selectedBeach}${this.state.date}${this.state.beachLength}`
         let {canPostToServer, canPostToLocal,missingValues,validatedProperties,seeModal,validating,...rest} = this.state
-        console.log(rest)
         saveToDb(name, version, "draftSurvey",{surveyId:keydata,...rest}, this.indexedResponse)
 
     }
@@ -302,7 +298,6 @@ class Survey extends Component{
     }
     deleteLocalCopy(e){
         e.preventDefault()
-        console.log(e.target.value)
         const indexedCallback = (response)=>{
           this.setState({
             data_removed:response
@@ -311,8 +306,6 @@ class Survey extends Component{
         clearItemFromDb(e.target.value, name, version,indexedCallback)
     }
     render(){
-        console.log(this.state.codesAndQuantities)
-        console.log(this.props.userdata)
         const lakesAndRivers = (lakes) => {
             if(this.props.beachCategories){
                 const places = this.props.beachCategories.filter(obj => obj.category === lakes)
@@ -324,7 +317,6 @@ class Survey extends Component{
         const a_code_list = (some_data) => {
             if(this.state.codesAndQuantities.length){
                 let usedCodes = this.state.codesAndQuantities.map(obj => obj.code)
-                console.log(usedCodes)
                 let new_list = this.props.codes.filter(obj => !usedCodes.includes(obj.code))
                 return (new_list)
             }else{

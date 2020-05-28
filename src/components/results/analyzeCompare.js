@@ -165,7 +165,6 @@ class AnalyzeCompare extends Component{
             labels.forEach(label =>{
               const chartData = this.getTheMedianFromRegionalData(region, codeGroups[label], label)
               if(chartData){
-                console.log(chartData)
                 if (chartData[0].data[0] > y_limit_0){
                     y_limit_0 = chartData[0].data[0]
                 }else if (chartData[1].data[0] > y_limit_1){
@@ -175,7 +174,6 @@ class AnalyzeCompare extends Component{
                 aList[1].data.push(chartData[1])
               }
             })
-            console.log(y_limit_0)
             target.push(aList)
         })
         this.setState({

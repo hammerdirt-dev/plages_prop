@@ -49,7 +49,6 @@ class BeachDate extends Component {
     }
     render(){
         console.log("Beach date State !!")
-        console.log(this.props.my_beaches)
         const lakesRivers = {
             lakes:this.props.lakes[0].results,
             rivers:this.props.rivers[0].results,
