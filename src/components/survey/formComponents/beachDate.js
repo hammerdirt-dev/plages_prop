@@ -49,9 +49,11 @@ class BeachDate extends Component {
     }
     render(){
         console.log("Beach date State !!")
+        console.log(this.props.my_beaches)
         const lakesRivers = {
             lakes:this.props.lakes[0].results,
             rivers:this.props.rivers[0].results,
+            beaches:this.props.my_beaches
         }
         const beaches = () => {
             if(this.state.region){
@@ -70,32 +72,51 @@ class BeachDate extends Component {
         }
         return(
             <div className="modal-column-full-width">
-                <div className="form-section-header">
-                    <h6 className="">Is this beach on a river or a lake?</h6>
-                </div>
-                <div className="row-wrap formTabButtonBorder">
-                     <Button
-                         buttonclass="formButtonTab"
-                         id="lakes"
-                         callback={this.selectType}
-                         label="Lakes"
-                     />
-                     <Button
-                         buttonclass="formButtonTab"
-                         id="rivers"
-                         callback={this.selectType}
-                         label="Rivers"
-                     />
-                </div>
+                {
+                    this.props.my_beaches[0] === 'none' ? (
+                        <div className="row-wrap formTabButtonBorder">
+
+                             <Button
+                                 buttonclass="formButtonTab"
+                                 id="lakes"
+                                 callback={this.selectType}
+                                 label="Lakes"
+                             />
+                             <Button
+                                 buttonclass="formButtonTab"
+                                 id="rivers"
+                                 callback={this.selectType}
+                                 label="Rivers"
+                             />
+                         </div>
+                        ):
+                        (<div className="row-wrap formTabButtonBorder">
+                            <Button
+                                 buttonclass="formButtonTab"
+                                 id="beaches"
+                                 callback={this.selectType}
+                                 label="My beaches"
+                             />
+                        </div>)
+                }
                 <motion.div
                     variants={slideDownAuto}
                     initial={false}
                     animate={this.state.beachSearchCategory ? "open":"closed"}
                     className="row-wrap pad-one-rem formTabBorder"
                     >
-
                     {
-                            this.state.beachSearchCategory ?
+                        this.state.beachSearchCategory ?
+                            this.state.beachSearchCategory === 'beaches' ?
+                                lakesRivers.beaches.map((place, i)=>
+                                    <Button
+                                        key={i}
+                                        buttonclass="formButton"
+                                        id={place}
+                                        callback={this.selectedBeach}
+                                        label={place}
+                                        />
+                                     ):(
                                 lakesRivers[this.state.beachSearchCategory].map((a_lake, i) =>
                                     <Button
                                         key={i}
@@ -104,9 +125,9 @@ class BeachDate extends Component {
                                         callback={this.selectRegion}
                                         label={a_lake}
                                         />
-                            ):<div>There was an error, sorry.</div>
+                                    )
+                                ):<div>There was an error, sorry.</div>
                     }
-
                 </motion.div>
                 <motion.div
                     variants={slideDownAuto}
@@ -130,18 +151,16 @@ class BeachDate extends Component {
                                         />
                             ):<div>There was an error, sorry.</div>
                     }
-
                 </motion.div>
-               <div className="row-no-wrap marg-one-rem pad-one-rem">
+                <div className="row-no-wrap marg-one-rem pad-one-rem">
                     <Button
-                    buttonclass="formButtonSelect"
-                    id="selectedBeach"
-                    value={this.state.selectedBeach}
-                    callback={this.props.logData}
-                    label={beachToSurvey()}
-                    />
-
-               </div>
+                        buttonclass="formButtonSelect"
+                        id="selectedBeach"
+                        value={this.state.selectedBeach}
+                        callback={this.props.logData}
+                        label={beachToSurvey()}
+                        />
+                </div>
             </div>
         )
     }

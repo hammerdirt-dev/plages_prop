@@ -34,6 +34,7 @@ class ColumnChart extends Component {
                 },
                 yAxis: {
                     min: 0,
+                    max: this.props.yMax ? this.props.yMax:null,
                     title: {
                         text: 'Pieces of trash per 100m'
                     }

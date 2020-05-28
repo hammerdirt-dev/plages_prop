@@ -74,8 +74,10 @@ class AnalyzeCompare extends Component{
     }
     componentDidUpdate(prevProps, prevState){
         if(this.state.barchartGroups && this.state.barchartGroups !== prevState.barchartGroups ){
+            var bargroups
+            bargroups = this.barChartData(this.state.selectedRegion,this.state.groupedCodes, this.state.barchartGroups)
             this.setState({
-                currentBarGroups:this.barChartData(this.state.selectedRegion,this.state.groupedCodes, this.state.barchartGroups)
+                currentBarGroups: bargroups,
             })
         }
     }
@@ -156,16 +158,29 @@ class AnalyzeCompare extends Component{
     }
     barChartData(regions, codeGroups, labels){
         let target = []
+        let y_limit_0 = 0
+        let y_limit_1 = 0
         regions.forEach(region => {
             let aList = [{title:region, data:[]},{title:region, data:[]}]
             labels.forEach(label =>{
               const chartData = this.getTheMedianFromRegionalData(region, codeGroups[label], label)
               if(chartData){
+                console.log(chartData)
+                if (chartData[0].data[0] > y_limit_0){
+                    y_limit_0 = chartData[0].data[0]
+                }else if (chartData[1].data[0] > y_limit_1){
+                    y_limit_1 = chartData[1].data[0]
+                }
                 aList[0].data.push(chartData[0])
                 aList[1].data.push(chartData[1])
               }
             })
+            console.log(y_limit_0)
             target.push(aList)
+        })
+        this.setState({
+             y_limit_0:y_limit_0,
+             y_limit_1:y_limit_1
         })
         return target
     }
@@ -197,7 +212,6 @@ class AnalyzeCompare extends Component{
             barchartGroups:barchartGroups[e.target.name]
         })
     }
-
     render(){
         const regionalChoices = [
             {id:"lakes", label:"Lakes"},
@@ -235,96 +249,96 @@ class AnalyzeCompare extends Component{
                 <div className="column-full-width background-white">
                 <div className="block-row pad-point3-rem">
                     <div className="inline-block-50-left pad-one-rem">
-                            <h6>Start</h6>
-                            <p >
-                                Begin by selecting either lake or river. Then select one the available categories. <strong>This will give you the average or the median value
-                                of all the individual survey results for that location.</strong>.
-                            </p>
-                            <p >
-                                The categories are defined in the project tab, under methods. Each category is a group of objects that have a similar use case or source.
-                            </p>
-                            <span className="rubik font-one-rem">All results are an indicator of the minimum quantity and type of objects present on the shoreline on the date of the survey.</span>
-                        </div>
-                        <div className="inline-block-50-left pad-one-rem">
-                            <h6>Interpreting results</h6>
-                            <p >
-                                <strong>Median</strong>: the median is the survey result that separates the lower half of the results from the higher half. It gives
-                                a better indication of what a "typical value" is for that body of water.
-                            </p>
-                            <p >
-                                <strong>Average</strong>: the arithmetic mean is the sum all values for that category, divided by the number of surveys for that location. Easy to understand, it is very sensitive
-                                to extreme values and is not an indicator of typical values or central tendency.
-                            </p>
-                        </div>
+                        <h6>Start</h6>
+                        <p >
+                            Begin by selecting either lake or river. Then select one the available categories. <strong>This will give you the average or the median value
+                            of all the individual survey results for that location.</strong>.
+                        </p>
+                        <p >
+                            The categories are defined in the project tab, under methods. Each category is a group of objects that have a similar use case or source.
+                        </p>
+                        <span className="rubik font-one-rem">All results are an indicator of the minimum quantity and type of objects present on the shoreline on the date of the survey.</span>
                     </div>
-                    <div className="block-row pad-point3-rem">
-                        <div className="inline-block-50">
-                            <p className="text-blue marg-top-one-rem">
-                                {
-                                    this.state.regionalChoice ? `Selected: ${this.state.regionalChoice} ${this.state.meanMedianLabel}`:`No location selected`
-                                }
-                            </p>
-                                {
-                                    startSearch.map((aPlace, i) =>
-                                        <Button
-                                            key={i}
-                                            buttonclass="cardButton"
-                                            active= {this.state.regionalChoice === aPlace.id ? true:false}
-                                            id={aPlace.id}
-                                            name={aPlace.name}
-                                            style={section_active_style}
-                                            callback={aPlace.callback}
-                                            label={aPlace.label}
-                                            />
-                                        )
-                                }
-                                {
-                                  meanOrMedian.map((obj, i) =>
-                                    (<Button
-                                      key={`meanmedian${i}`}
-                                      buttonclass="cardButton"
-                                      id={obj.id}
-                                      name={obj.name}
-                                      value={obj.value}
-                                      callback={this.selectMeanOrMedian}
-                                      label={obj.label}
-                                      style={section_active_style}
-                                      />)
-                                  )
-                                }
-                        </div>
-                        <div className="inline-block-50">
-                            <p className="text-blue marg-top-one-rem">
-                                {
-                                    this.state.barchartGroup ? truncate(this.state.barchartGroup, 4):`No category selected`
-                                }
-                            </p>
+                    <div className="inline-block-50-left pad-one-rem">
+                        <h6>Interpreting results</h6>
+                        <p >
+                            <strong>Median</strong>: the median is the survey result that separates the lower half of the results from the higher half. It gives
+                            a better indication of what a "typical value" is for that body of water.
+                        </p>
+                        <p >
+                            <strong>Average</strong>: the arithmetic mean is the sum all values for that category, divided by the number of surveys for that location. Easy to understand, it is very sensitive
+                            to extreme values and is not an indicator of typical values or central tendency.
+                        </p>
+                    </div>
+                </div>
+                <div className="block-row pad-point3-rem">
+                    <div className="inline-block-50">
+                        <p className="text-blue marg-top-one-rem">
                             {
-                                barchartCoices.map((choice, i) =>{
-                                    return(
-                                        <DisableButton
-                                            key={i}
-                                            buttonclass="cardButton"
-                                            active= {this.state.barchartGroup === choice.name ? true:false}
-                                            id={choice.name}
-                                            name={choice.name}
-                                            style={section_active_style}
-                                            callback={this.chooseBarchart}
-                                            disabled={this.state.displayCategories ? false:true}
-                                            label={choice.name}
-                                            />
-                                    )
-                                })
+                                this.state.regionalChoice ? `Selected: ${this.state.regionalChoice} ${this.state.meanMedianLabel}`:`No location selected`
                             }
-                        </div>
+                        </p>
+                            {
+                                startSearch.map((aPlace, i) =>
+                                    <Button
+                                        key={i}
+                                        buttonclass="cardButton"
+                                        active= {this.state.regionalChoice === aPlace.id ? true:false}
+                                        id={aPlace.id}
+                                        name={aPlace.name}
+                                        style={section_active_style}
+                                        callback={aPlace.callback}
+                                        label={aPlace.label}
+                                        />
+                                    )
+                            }
+                            {
+                              meanOrMedian.map((obj, i) =>
+                                (<Button
+                                  key={`meanmedian${i}`}
+                                  buttonclass="cardButton"
+                                  id={obj.id}
+                                  name={obj.name}
+                                  value={obj.value}
+                                  callback={this.selectMeanOrMedian}
+                                  label={obj.label}
+                                  style={section_active_style}
+                                  />)
+                              )
+                            }
                     </div>
-                    <div className="block-row">
+                    <div className="inline-block-50">
+                        <p className="text-blue marg-top-one-rem">
+                            {
+                                this.state.barchartGroup ? truncate(this.state.barchartGroup, 4):`No category selected`
+                            }
+                        </p>
                         {
-                            this.state.currentBarGroups ? this.state.currentBarGroups.map((obj, i) => <div className="inline-block-25" key={`columnChartContainer${i}${Math.floor(Math.random() * 100)}`} > <ColumnChart  id={`columnChart${i}${Math.floor(Math.random() * 100)}`} title={obj[this.state.meanOrMedian].title} data={obj[this.state.meanOrMedian].data} /> </div>):null
+                            barchartCoices.map((choice, i) =>{
+                                return(
+                                    <DisableButton
+                                        key={i}
+                                        buttonclass="cardButton"
+                                        active= {this.state.barchartGroup === choice.name ? true:false}
+                                        id={choice.name}
+                                        name={choice.name}
+                                        style={section_active_style}
+                                        callback={this.chooseBarchart}
+                                        disabled={this.state.displayCategories ? false:true}
+                                        label={choice.name}
+                                        />
+                                )
+                            })
                         }
                     </div>
                 </div>
-            </motion.div>
+                <div className="block-row">
+                    {
+                        this.state.currentBarGroups ? this.state.currentBarGroups.map((obj, i) => <div className="inline-block-25" key={`columnChartContainer${i}${Math.floor(Math.random() * 100)}`} > <ColumnChart  id={`columnChart${i}${Math.floor(Math.random() * 100)}`} title={obj[this.state.meanOrMedian].title} data={obj[this.state.meanOrMedian].data} yMax={this.state.meanOrMedian ? this.state.y_limit_1:this.state.y_limit_0}/> </div>):null
+                    }
+                </div>
+            </div>
+        </motion.div>
         )
     }
 }

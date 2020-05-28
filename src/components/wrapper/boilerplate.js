@@ -82,9 +82,14 @@ class AppWrapper extends Component{
             }
         }if(this.state.loggedin !== prevState.loggedin){
           var draftSurveys = indexGetAllFromStore('draftSurvey',name,version, this.dataBaseState, this.dataBaseCallBack)
-          this.setState({
-            draftSurvey:draftSurveys
-          })
+          if (this.state.loggedin){
+            let the_user = this.state.users.filter(obj => obj.username == this.state.username)
+            this.setState({
+                draftSurvey:draftSurveys,
+                userdata:the_user[0]
+            })
+           }
+
         }
     }
     isThereData(obj){
@@ -140,6 +145,7 @@ class AppWrapper extends Component{
         })
     }
     loginStatus(obj){
+        console.log(obj)
         this.setState(
             obj
         )
@@ -193,6 +199,7 @@ class AppWrapper extends Component{
     }
 
     render(){
+        console.log(this.state.userdata)
         const availableApps = appsToLoad(this.state)
         const headerProps = {
             updateComponent:this.state.updateComponent,

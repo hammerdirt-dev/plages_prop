@@ -1,5 +1,5 @@
-const prefix = 'http://127.0.0.1:8000/api/'
-// const prefix = 'https://mwshovel.pythonanywhere.com/api/'
+//const prefix = 'http://127.0.0.1:8000/api/'
+const prefix = 'https://mwshovel.pythonanywhere.com/api/'
 // authentication
 
 export const REFRESH_TOKEN = `${prefix}hd-auth/jwt/refresh/`

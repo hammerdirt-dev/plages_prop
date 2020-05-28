@@ -105,7 +105,7 @@ class Header extends Component{
         console.log("no network")
         navButtonProps = []
         AppSections.forEach(obj => {
-          if(obj.label === "Login" || obj.label === "Update DB"){
+          if(obj.label === "Login" || obj.label === "Update DB" || obj.label === 'Survey'){
             navButtonProps.push(
               {
                   buttonclass:"navButtonHeader",
@@ -146,7 +146,6 @@ class Header extends Component{
               callback:this.props.requestedApp,
               disabled:false,
               label:obj.label
-
             }
             navButtonProps.push(a_button)
           }
@@ -189,7 +188,6 @@ class Header extends Component{
         }
         return(
             <div  className="header-wrapper header-wrapper-border" id={this.props.id} onClick={this.props.callback} >
-
                 <div className="header-section-two">
                     <div className="header-button-wrapper">
                         <Button {...buttonProps}  />

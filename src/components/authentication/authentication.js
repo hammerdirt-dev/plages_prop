@@ -3,7 +3,6 @@ import {motion} from 'framer-motion'
 import Button from '../../shared/components/button/buttons'
 import '../../shared/css/grids.css'
 import '../../shared/css/blocks.css'
-// import {getSomeData, returnSomeData} from '../api/httpMethods.js'
 import {TOKEN_AUTH, REFRESH_TOKEN} from '../api/apiUrls'
 import {slideDown} from '../../shared/utilities/framer/variants'
 
@@ -74,7 +73,7 @@ class LogIn extends Component{
                         tokenChecked: tokenChecked ? tokenChecked:false,
                         userName:userName ? userName:"Not logged in"
                     }, this.refreshTheToken(refreshToken))
-                    this.props.reportStatus({loggedin:loggedIn, token:token})
+                    this.props.reportStatus({loggedin:loggedIn, token:token, username:username})
                 })
             }else{
                 this.setState({

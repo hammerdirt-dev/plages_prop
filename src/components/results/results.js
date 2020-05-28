@@ -38,7 +38,6 @@ class Results extends Component{
             currentSection:"RegionalData",
             showSubMenu:true,
             codes:false
-
         }
         this.showEvent = this.showEvent.bind(this)
         this.requestedSection = this.requestedSection.bind(this)
@@ -124,7 +123,6 @@ class Results extends Component{
                             codeKeys={this.state.codeKeys}
                             sourceKeys={this.state.sourceKeys}
                             materialKeys={this.state.materialKeys}
-
                             />,
             AnalyzeCompare:<AnalyzeCompare
                             showMe={this.showSubMenu}

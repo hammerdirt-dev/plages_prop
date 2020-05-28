@@ -90,6 +90,7 @@ export function appsToLoad(state){
                 codes={codes}
                 token={token}
                 draftSurvey={draftSurvey}
+                userdata={userdata}
             />,
     })
 }

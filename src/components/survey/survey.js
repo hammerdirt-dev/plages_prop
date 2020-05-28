@@ -267,7 +267,6 @@ class Survey extends Component{
           surveyDataResponse:"survey data",
           postToLocal:message
         })
-
     }
     postToLocal(){
         console.log("saving to local")
@@ -312,7 +311,8 @@ class Survey extends Component{
         clearItemFromDb(e.target.value, name, version,indexedCallback)
     }
     render(){
-      console.log(this.state.codesAndQuantities)
+        console.log(this.state.codesAndQuantities)
+        console.log(this.props.userdata)
         const lakesAndRivers = (lakes) => {
             if(this.props.beachCategories){
                 const places = this.props.beachCategories.filter(obj => obj.category === lakes)
@@ -354,7 +354,8 @@ class Survey extends Component{
                                 dimsDataResponse={this.state.dimResponse}
                                 surveyDataResponse={this.state.surveyResponse}
                                 postToLocal={this.state.postToLocal}
-                            />}
+                            />
+                         }
                     />
                     <AnimatePresence initial={true}>
                         <motion.div
@@ -372,24 +373,21 @@ class Survey extends Component{
                                             this.props.draftSurvey ?
                                                 this.props.draftSurvey.result.map(obj =>
                                                     (<div key={obj.selectedBeach} className="row-no-wrap">
-
-                                                            <Button label={`Load ${obj.selectedBeach}, ${obj.date}`} buttonclass="formButtonSelect" value={obj.surveyId} callback={this.loadSaved} />
-                                                            <Button label={`Delete ${obj.selectedBeach}, ${obj.date}`} buttonclass="formButtonSelect" value={obj.surveyId} callback={this.deleteLocalCopy} />
-
+                                                        <Button label={`Load ${obj.selectedBeach}, ${obj.date}`} buttonclass="formButtonSelect" value={obj.surveyId} callback={this.loadSaved} />
+                                                        <Button label={`Delete ${obj.selectedBeach}, ${obj.date}`} buttonclass="formButtonSelect" value={obj.surveyId} callback={this.deleteLocalCopy} />
                                                     </div>)
                                             ):(
                                                 <p>
                                                     No surveys saved on this device
                                                 </p>
-
                                             )
-
                                         }
                                         <div className="form-section-header">
                                             <h6 className="text-center">Location and date </h6>
                                         </div>
                                         <BeachDate
                                             logData={this.logData}
+                                            my_beaches={JSON.parse(this.props.userdata.my_beaches)}
                                             lakes={lakesAndRivers('lakes')}
                                             rivers={lakesAndRivers('rivers')}
                                             beachesByCategory={this.props.beachesByCategory}
