@@ -1,15 +1,12 @@
 import {max, min,mean, median } from 'simple-statistics'
 
-
-
-
-
 export function makeScatterPoints(aList){
     var data = []
+    console.log(aList)
     aList.forEach(obj => {
         var dateList = []
         obj.results.forEach(result => dateList.push({x:Date.parse(result[0]), y:result[1]}))
-        data.push({name:obj.location, color:"blue", stacking:'normal', marker:{radius:5, symbol:'circle', lineWidth:1, lineColor:'#fff'}, data:dateList})
+        data.push({name:obj.location, color:"blue", type:"scatter", marker:{radius:6, symbol:'circle', lineWidth:1, lineColor:'#fff'}, data:dateList})
     })
     return data
 }

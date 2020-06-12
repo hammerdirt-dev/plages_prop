@@ -9,7 +9,7 @@ class ScatterPlot extends Component {
         this.state = {
             options:{
                 chart: {
-                    type: 'scatter',
+//                    type: 'scatter',
                     animation:false,
                     renderTo:this.props.id,
                     backgroundColor:null,

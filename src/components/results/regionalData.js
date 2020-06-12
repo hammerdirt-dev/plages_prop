@@ -93,11 +93,9 @@ class RegionalData extends Component{
               }
           })
           return [{location:this.state.selectLocation, beaches:beachesWithData}]
-
         }else{
           console.log(`There is no regional data for ${aName}`)
         }
-
     }
     getSelectedBeachesPcsPm(){
         const data = this.props.dailyTotals.filter(obj => this.state.selectionBeaches[0].beaches.includes(obj.location))
@@ -131,7 +129,6 @@ class RegionalData extends Component{
               selectionTotal:this.getSelectionTotals(e.target.id, this.state.selectedCategory)
           })
         }
-
     }
     makeMarkers(){
         this.setState({
