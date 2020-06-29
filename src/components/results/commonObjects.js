@@ -194,7 +194,7 @@ class CommonObjects extends Component{
                         <div className="inline-block-50-left pad-one-rem">
                                 <h6> The six most common objects</h6>
                                 <p >
-                                    Select one of the the four criteria. This represents the average or median of the individual survey results for each survey site and each object code at identified at that body of water.
+                                    Select one of the the four criteria. This represents the average or median of the individual survey results for each survey site and each object code identified at that body of water.
                                 </p>
                                 <p>
                                   The six most common objects represent 60-80% of the total value for most surveys. Thus giving an approximate view of the most abundant trash items on a given body of water.

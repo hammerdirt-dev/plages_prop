@@ -1,5 +1,4 @@
-// export const name = "BeachLitterOne"
-// export const version = 13
+
 // check to see if there is a db
 export function checkForDb(the_window){
     if(!the_window.indexedDB){
@@ -168,10 +167,10 @@ export const saveToDb = (name, version, a_store, data, callback) => {
         let store = tx.objectStore(a_store)
         store.put(data)
         tx.oncomplete = function(event){
-            callback("The record was saved")
+            callback("The record was saved to this device")
         }
         tx.onerror = function(event){
-            callback("Unable to save the record")
+            callback("Unable to save the record locally")
         }
     }
 }

@@ -224,7 +224,7 @@ class Survey extends Component{
         if(serverPayLoad){
             const headers = this.postHeaders(theToken)
             const makeRequest = this.makePostRequest(putOrPost,url, headers, serverPayLoad)
-            the_response = await makeRequest.then(response => {return {ok:response.ok, status:response.status}})
+            the_response = await makeRequest.then(response => { console.log(response); return {ok:response.ok, status:response.status}})
             theResponse(the_response)
         }
     }

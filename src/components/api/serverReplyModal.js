@@ -25,24 +25,48 @@ class ServerReplyModal extends Component{
         const dimsResponse = () => {
             if(this.props.dimsDataResponse && this.props.dimsDataResponse.ok){
                 var message = "Dimensional data saved to server"
-
             }else if(this.props.dimsDataResponse && !this.props.dimsDataResponse.ok){
-                message = "Request refused. Are you logged in ?"
+                if(this.props.dimsDataResponse.status === 401){
+                    message = "Request refused. try logging in again."
+                }else if(this.props.dimsDataResponse.status === 500){
+                    message = "There was a server error, is this a duplicate record?"
+                }else{
+                    message = "There was an undefined error, make sure to save to local"}
             }else{
-                message = "Waiting for the reply from the server..."
+                message = "Dims data not sent to server"
             }
             return message
         }
         const surveyResponse = () => {
             if(this.props.surveyDataResponse && this.props.surveyDataResponse.ok){
-                var message = "Survey data saved to server"
+                var message = "Object data saved to server"
             }else if(this.props.surveyDataResponse && !this.props.surveyDataResponse.ok){
-                message = "Request refused. Are you logged in ?"
-            }else if(this.props.postToLocal){
-                message = this.props.postToLocal
+                if(this.props.surveyDataResponse.status === 401){
+                    message = "Request refused. try logging in again."
+                 }else if(this.props.surveyDataResponse.status === 500){
+                    message = "There was a server error, is this a duplicate record?"
+                }else{
+                    message = "There was an undefined error, make sure to save to local"
+                }
+            }else{
+                message = "Object data not sent to server"
             }
             return message
         }
+        const indexedResponse = () => {
+            var message;
+            if(this.props.postToLocal){
+                message = this.props.postToLocal
+
+            }else{
+                message = "Not saved locally"
+            }
+            return message
+
+
+
+        }
+
         const saveForLater = () => {
             if(this.props.surveyDataResponse && this.props.dimsDataResponse){
                 if(!this.props.surveyDataResponse.ok || !this.props.dimsDataResponse.ok){
@@ -73,6 +97,12 @@ class ServerReplyModal extends Component{
                 <strong>Survey data: &nbsp;</strong>
                 {
                     surveyResponse()
+                }
+                </p>
+                <p>
+                <strong>Local copy: &nbsp;</strong>
+                {
+                    indexedResponse()
                 }
                 </p>
                 {

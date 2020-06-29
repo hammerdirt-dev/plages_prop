@@ -15,6 +15,7 @@ import hammerdirt2 from '../../shared/images/hammerdirt2.png'
 import dev_guy225 from '../../shared/images/dev_guy225.jpg'
 import shannon from '../../shared/images/shannon.jpg'
 import profile_hk from '../../shared/images/profile_hk.jpg'
+import ecoleint from '../../shared/images/ecoleint.jpg'
 
 class Resources extends Component{
     constructor(props){
@@ -58,13 +59,15 @@ class Resources extends Component{
           image:hackuarium,
           link:"http://wiki.hackuarium.ch/w/Main_Page",
           function:"Surveyors, microscopy"
-        }
-      ]
-      const universities =[
-        {
+        },{
+          name:"Ecole International de Genève",
+          image:ecoleint,
+          link:"https://www.ecolint.ch/beyond-classroom/stem-centre",
+          function:"Surveyors"
+        }, {
           name:"Université de Genève",
           image:unige_rose,
-          link:"ttps://www.unige.ch/forel/en/",
+          link:"https://www.unige.ch/forel/en/",
           function:"XRF spectromtery",
         },
         {
@@ -73,6 +76,7 @@ class Resources extends Component{
           link:"https://www.epfl.ch/labs/gr-cel/staff/",
           function:"FTIR spectroscopy"
         }
+
       ]
       const openAccess = [
         {
@@ -190,7 +194,6 @@ class Resources extends Component{
           language:"JavaScript",
         },
       ]
-
         return(
             <motion.div
                 className="outer-row"
@@ -294,30 +297,7 @@ class Resources extends Component{
                           )
                       }
                   </div>
-                  <div className="block-row-stretch">
-                      {
-                        universities.map(obj => {
-                          return (
-                            <div key={obj.name} className="inline-block-25-flex border-light-gray">
-                              <div className="flexCard">
-                                <div className="flexCardTitle">
-                                  {obj.name}
-                                </div>
-                                <div className="cardImage">
-                                  <img src={obj.image} alt={`logo of ${obj.name}`} />
-                                </div>
-                                <div className="flexCardFunction">
-                                  {obj.function}
-                                </div>
-                                <div className="flexCardLink">
-                                  <a href={obj.link} rel="noopener noreferrer" target="_blank">{truncate(obj.name, 2)}</a>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                          )
-                      }
-                  </div>
+
                   <div className="block-row">
                   <div className="orgsUnis">
                     Tools, open access and open source:
