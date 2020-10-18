@@ -39,15 +39,16 @@ class SurveyMap extends Component{
                                 // minHeight:"800px",
                                 zIndex:"0"
                             }}
-                            zoomControl={false}
+                            zoomControl={true}
                             bounds={this.props.bounds}
                             boundsOptions={{
                                 padding: [30,30]
                             }}
                             >
+
                             <TileLayer
                               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                              url={`https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=${MAP_API_KEY}`}
+                              url={`https://api.mapbox.com/styles/v1/hammerdirt/ckgf23mlm7oyy19nwnqmix0pb/tiles/{z}/{x}/{y}?access_token=${MAP_API_KEY}`}
                               id='mapbox.streets'
                               accessToken={this.props.api_key}
                             />

@@ -3,7 +3,7 @@ import {
     getFirstAndLastDate,
 } from '../../../shared/utilities/jsHelper/stats'
 
-export const MAP_API_KEY = "pk.eyJ1IjoiaGFtbWVyZGlydCIsImEiOiJjanc1dG00OWkwYjBwNDRsMnY4MnJiNWc3In0.S5aieyLvesvFkYMmVgLNrA"
+export const MAP_API_KEY = "pk.eyJ1IjoiaGFtbWVyZGlydCIsImEiOiJja2dlemJ6cjMxZm1qMnRzNWtqcTFzMHNhIn0.WR0tuIA2KrsvqxgigR5T4w"
 
 export const getLatLongPopUp = (beachList, beachData, color) =>  {
     const aDifferentList =[]
@@ -38,12 +38,12 @@ export const singlePointBounds = (theLists) => {
 }
 export const markerHtmlStyles = (color) =>{
     return (`background-color: ${color};
-        width: 2rem;
-        height: 2rem;
+        width: 1rem;
+        height: 1rem;
         display: block;
         position: relative;
         border-radius: 1rem;
-        border: 1px solid #FFFFFF`)
+        border: 2px solid #FFFFFF`)
 }
 export const icon = (color) => {
     return (

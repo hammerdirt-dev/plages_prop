@@ -151,7 +151,7 @@ class GoalsObjectives extends Component{
                                   <Inprogress size="24" color="blue" />Collect samples at random locations. In addition to the established 20 survey sites, individual samples will be collected along the selected river basins.
                               </p>
                               <p >
-                                  <Close size="24" color="red" />Create an interim report. The interim report is designed to give a proposed structure and invite stakeholders to particpate in the design and content of the final report.
+                                  <Inprogress size="24" color="blue" />Create an interim report. The interim report is designed to give a proposed structure and invite stakeholders to particpate in the design and content of the final report.
                               </p>
                               <p >
                                   <Inprogress size="24" color="blue" />Provide custom reports and output. Interested stakeholders can request reports that address a particular need.
@@ -164,10 +164,10 @@ class GoalsObjectives extends Component{
                           <div className="inline-block-50-left pad-one-rem">
                               <h6 >Reporting: last 90 days</h6>
                               <p >
-                                  <Close size="24" color="red" />Create a printed report of survey results and analysis. The content and format of the final document is a collaborative effort with other stakeholders.
+                                  <Inprogress size="24" color="blue" />Create a printed report of survey results and analysis. The content and format of the final document is a collaborative effort with other stakeholders.
                               </p>
                               <p >
-                                  <Close size="24" color="red" />Consolidate the code base. This application is opensource and is destined to be the property of the "community".
+                                  <Inprogress size="24" color="blue" />Consolidate the code base. This application is opensource and is destined to be the property of the "community".
                               </p>
                               <p >
                                   Questions? contact roger or shannon @hammerdirt.ch!
